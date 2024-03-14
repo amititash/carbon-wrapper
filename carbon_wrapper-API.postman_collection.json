@@ -1,0 +1,159 @@
+{
+    "collection": {
+        "info": {
+            "_postman_id": "0c4427fc-e6cd-46d8-b489-6925aec65d0a",
+            "name": "carbon-API",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+            "updatedAt": "2024-03-13T08:21:14.000Z",
+            "uid": "24998398-0c4427fc-e6cd-46d8-b489-6925aec65d0a",
+            "createdAt": null,
+            "lastUpdatedBy": null
+        },
+        "item": [
+            {
+                "name": "Upload file with URL",
+                "id": "7a680c41-df36-41fb-b16b-ce8230dfacbb",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "method": "POST",
+                    "header": [
+                        {
+                            "key": "",
+                            "value": "",
+                            "type": "text"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\r\n    \"urls\": [\r\n        \"https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2\",\r\n        \"https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2\",\r\n        \"https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2\"\r\n    ],\r\n    \"customerId\": \"alpha-rom\"\r\n}",
+                        "options": {
+                            "raw": {
+                                "language": "json"
+                            }
+                        }
+                    },
+                    "url": {
+                        "raw": "localhost:3000/carbon/indexUrls",
+                        "host": [
+                            "localhost"
+                        ],
+                        "port": "3000",
+                        "path": [
+                            "carbon",
+                            "indexUrls"
+                        ]
+                    }
+                },
+                "response": [],
+                "uid": "24998398-7a680c41-df36-41fb-b16b-ce8230dfacbb"
+            },
+            {
+                "name": "check if Carbon Indexed of customer",
+                "id": "f508ba2f-6bbd-4628-a828-f37922f3747b",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\r\n    \"customerId\": \"1234567890\"\r\n}",
+                        "options": {
+                            "raw": {
+                                "language": "json"
+                            }
+                        }
+                    },
+                    "url": {
+                        "raw": "localhost:3000/carbon/checkIndexedCarbon-ofCustomer",
+                        "host": [
+                            "localhost"
+                        ],
+                        "port": "3000",
+                        "path": [
+                            "carbon",
+                            "checkIndexedCarbon-ofCustomer"
+                        ]
+                    }
+                },
+                "response": [],
+                "uid": "24998398-f508ba2f-6bbd-4628-a828-f37922f3747b"
+            },
+            {
+                "name": "check Indexed Carbon Status",
+                "id": "c13a0924-c2cd-4695-b4bb-dd31dc2c90fc",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "{\r\n    \"carbonId\": 4629571\r\n}",
+                        "options": {
+                            "raw": {
+                                "language": "json"
+                            }
+                        }
+                    },
+                    "url": {
+                        "raw": "localhost:3000/carbon/checkFileStatus",
+                        "host": [
+                            "localhost"
+                        ],
+                        "port": "3000",
+                        "path": [
+                            "carbon",
+                            "checkFileStatus"
+                        ]
+                    }
+                },
+                "response": [],
+                "uid": "24998398-c13a0924-c2cd-4695-b4bb-dd31dc2c90fc"
+            },
+            {
+                "name": "list All URL and customer ID",
+                "id": "1da5764d-30a7-4ec2-baa7-0cca3b4078bc",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "method": "GET",
+                    "header": [
+                        {
+                            "key": "customer-id",
+                            "value": "1234567890",
+                            "type": "text"
+                        }
+                    ],
+                    "body": {
+                        "mode": "raw",
+                        "raw": "",
+                        "options": {
+                            "raw": {
+                                "language": "json"
+                            }
+                        }
+                    },
+                    "url": {
+                        "raw": "localhost:3000/carbon/listAllurlId",
+                        "host": [
+                            "localhost"
+                        ],
+                        "port": "3000",
+                        "path": [
+                            "carbon",
+                            "listAllurlId"
+                        ]
+                    }
+                },
+                "response": [],
+                "uid": "24998398-1da5764d-30a7-4ec2-baa7-0cca3b4078bc"
+            }
+        ]
+    }
+}
