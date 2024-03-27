@@ -161,7 +161,7 @@ async function indexFiles(req, res) {
 //index web scrape
 async function indexWebURLs(req, res) {
     try {
-        const { urls, customerId, pages,depth } = req.body; //validataion
+        const { urls, customerId, pages, depth } = req.body; //validataion
 
         if (!urls || !customerId) {
             return res.status(400).json({ error: "Missing required parameters" });
@@ -179,7 +179,7 @@ async function indexWebURLs(req, res) {
                             url: url,
                             "chunk_size": 8000,
                             "max_pages_to_scrape": pages,
-                            "recursion_depth":depth,
+                            "recursion_depth": depth,
                         },
                     ],
                     {
@@ -220,55 +220,9 @@ async function indexWebURLs(req, res) {
     }
 }
 
-//check all indexed carbon of customer
-async function checkIndexedCarbon(req, res) {
-    try {
-        const { customerId } = req.body;
-
-        // Validation
-        if (!customerId) {
-            return res
-                .status(400)
-                .json({ error: "Missing required parameter: customerId" });
-        }
-
-        const options = {
-            headers: {
-                Authorization: `Bearer ${constants.carbonApiKey}`,
-                "Content-Type": "application/json",
-                "customer-id": customerId,
-            },
-        };
-
-        const requestBody = {
-            pagination: { limit: 10 },
-            order_by: "created_at",
-            order_dir: "desc",
-            filters: {
-                organization_supplied_user_id: customerId,
-            },
-        };
-
-        const response = await axios.post(
-            `${constants.carbonApiUrl}/user_files_v2`,
-            requestBody,
-            options
-        );
-
-        // Check if the response contains data
-        if (!response.data) {
-            return res.status(404).json({ error: "No data found" });
-        }
-
-        res.json(response.data);
-    } catch (error) {
-        // Handle any errors
-        res.status(500).json({ error: error.message });
-    }
-}
 
 //resync the status of indexed file if error found
-async function checkIndexedCarbonStatus(req, res) {
+async function resyncIndexedCarbonStatus(req, res) {
     try {
         const { carbonId } = req.body;
 
@@ -330,7 +284,7 @@ async function checkIndexedCarbonStatus(req, res) {
     }
 }
 
-// listing out all indexed URLs and ID
+// listing out all indexed URLs and ID from Database
 async function listURLsAndCarbonIDs(req, res) {
     try {
         const allCarbonData = await CarbonModel.CarbonDatas.find();
@@ -354,11 +308,81 @@ async function listURLsAndCarbonIDs(req, res) {
     }
 }
 
+//check READY status and all indexed carbon of customer
+async function checkReadyIndexedCarbon(req, res) {
+    try {
+        const { customerId } = req.body;
+
+        // Validation
+        if (!customerId) {
+            return res
+                .status(400)
+                .json({ error: "Missing required parameter: customerId" });
+        }
+
+        const options = {
+            headers: {
+                Authorization: `Bearer ${constants.carbonApiKey}`,
+                "Content-Type": "application/json",
+                "customer-id": customerId,
+            },
+        };
+
+        const requestBody = {
+            pagination: {
+                limit: 123,
+            },
+            order_by: "created_at",
+            order_dir: "desc",
+            filters: {
+                organization_supplied_user_id: customerId,
+            },
+        };
+
+        const response = await axios.post(
+            `${constants.carbonApiUrl}/user_files_v2`,
+            requestBody,
+            options
+        );
+
+        // Check if the response contains data
+        if (!response.data || !Array.isArray(response.data.results)) {
+            return res.status(404).json({ error: "No data found " });
+        }
+
+        // Filter out non-ready files 
+        const nonReadyFiles = response.data.results.filter(file => file.sync_status !== 'READY');
+        const nonReadyCount = nonReadyFiles.length;
+
+        if (nonReadyCount === 0) {
+            return res.json({ message: "All files are in READY status", count: 0, allResponse: response.data });
+        } else {
+            // Send the non-ready files count along with the list of non-ready files
+            res.json({
+                count: nonReadyCount,
+                nonReadyFiles: nonReadyFiles.map(file => ({
+                    id: file.id,
+                    sync_status: file.sync_status,
+                    sync_error_message: file.sync_error_message,
+                    // external_url: file.external_url
+                })),
+                allResponse: response.data
+            });
+        }
+
+        // res.json(response.data);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+
+
 module.exports = {
     indexFileViaURLs,
     indexFiles,
-    checkIndexedCarbon,
-    checkIndexedCarbonStatus,
+    resyncIndexedCarbonStatus,
     listURLsAndCarbonIDs,
     indexWebURLs,
+    checkReadyIndexedCarbon
 };

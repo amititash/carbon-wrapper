@@ -66,18 +66,18 @@
                 }
               },
               "url": {
-                "raw": "localhost:3000/browse/fetchRobotTaskById?robotId=f2170f89-fcc3-4b0d-a085-f8a3d80f2d5a&taskId=1f4f01f1-a053-44c9-b731-759225cdcc93",
+                "raw": "localhost:3000/browse/fetchRobotTaskById?robotId=fc31a8e1-ede2-460f-b3c2-e23e4302f9c9&taskId=4ae7729e-1852-4259-b5b5-d7aff3cd1218",
                 "host": ["localhost"],
                 "port": "3000",
                 "path": ["browse", "fetchRobotTaskById"],
                 "query": [
                   {
                     "key": "robotId",
-                    "value": "f2170f89-fcc3-4b0d-a085-f8a3d80f2d5a"
+                    "value": "fc31a8e1-ede2-460f-b3c2-e23e4302f9c9"
                   },
                   {
                     "key": "taskId",
-                    "value": "1f4f01f1-a053-44c9-b731-759225cdcc93"
+                    "value": "4ae7729e-1852-4259-b5b5-d7aff3cd1218"
                   }
                 ]
               }
@@ -117,7 +117,7 @@
                 }
               },
               "url": {
-                "raw": "localhost:3000/carbon/fetchAndIndexData?robotId=f2170f89-fcc3-4b0d-a085-f8a3d80f2d5a&customerId=test-333&taskId=b1b25ec9-91a7-46bf-aca9-fcf3dc639e1d",
+                "raw": "localhost:3000/carbon/fetchAndIndexData?robotId=f2170f89-fcc3-4b0d-a085-f8a3d80f2d5a&customerId=global-jobs&taskId=b1b25ec9-91a7-46bf-aca9-fcf3dc639e1d",
                 "host": ["localhost"],
                 "port": "3000",
                 "path": ["carbon", "fetchAndIndexData"],
@@ -128,7 +128,7 @@
                   },
                   {
                     "key": "customerId",
-                    "value": "test-333"
+                    "value": "global-jobs"
                   },
                   {
                     "key": "taskId",
@@ -223,7 +223,7 @@
                   {
                     "key": "files",
                     "type": "file",
-                    "src": "/C:/Users/Deepak Singh Parihar/Downloads/White Paper_ Vision for Establishing a Generative AI Lab (1).pdf"
+                    "src": "/C:/Users/Deepak Singh Parihar/Downloads/White Paper_ Vision for Establishing a Generative AI Lab.pdf"
                   },
                   {
                     "key": "customerId",
@@ -261,10 +261,10 @@
                 }
               },
               "url": {
-                "raw": "localhost:3000/carbon/checkFileStatus",
+                "raw": "localhost:3000/carbon/resyncFileStatus",
                 "host": ["localhost"],
                 "port": "3000",
-                "path": ["carbon", "checkFileStatus"]
+                "path": ["carbon", "resyncFileStatus"]
               }
             },
             "response": [],
@@ -305,8 +305,8 @@
             "uid": "24998398-1da5764d-30a7-4ec2-baa7-0cca3b4078bc"
           },
           {
-            "name": "view all index data by customerId",
-            "id": "0cbeb186-7787-4637-9b73-c2c2942f97b1",
+            "name": "check READY status and all indexed carbon of customer",
+            "id": "74978efa-0c2f-46fb-bc03-c474072b19a2",
             "protocolProfileBehavior": {
               "disableBodyPruning": true
             },
@@ -315,7 +315,7 @@
               "header": [],
               "body": {
                 "mode": "raw",
-                "raw": "{\r\n    \"customerId\":\"test-333\"\r\n}",
+                "raw": "{\r\n    \"customerId\":\"unilab-kb\"\r\n}",
                 "options": {
                   "raw": {
                     "language": "json"
@@ -323,14 +323,14 @@
                 }
               },
               "url": {
-                "raw": "localhost:3000/carbon/checkIndexedCarbon-ofCustomer",
+                "raw": "localhost:3000/carbon/checkReadyIndexedCarbon",
                 "host": ["localhost"],
                 "port": "3000",
-                "path": ["carbon", "checkIndexedCarbon-ofCustomer"]
+                "path": ["carbon", "checkReadyIndexedCarbon"]
               }
             },
             "response": [],
-            "uid": "24998398-0cbeb186-7787-4637-9b73-c2c2942f97b1"
+            "uid": "24998398-74978efa-0c2f-46fb-bc03-c474072b19a2"
           }
         ],
         "id": "0c99f176-24f7-42e2-827e-d51681eb1537",
