@@ -1,6 +1,5 @@
 const axios = require('axios');
 const { constants } = require('../config/constants');
-const { Parser } = require('json2csv');
 
 //fetch all data of robot
 async function fetchAllTaskofRobot(req, res) {

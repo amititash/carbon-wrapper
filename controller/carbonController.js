@@ -1,12 +1,7 @@
 const CarbonModel = require("../models/carbonModel");
 const axios = require("axios");
 const { constants } = require("../config/constants");
-const fs = require('fs');
-const path = require("path");
 const FormData = require("form-data");
-const csvParser = require('csv-parser');
-const readline = require('readline');
-const { status: getTokenStatus } = require('tiktoken');
 
 //index the URL files
 async function indexFileViaURLs(req, res) {

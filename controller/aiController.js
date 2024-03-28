@@ -1,9 +1,5 @@
 const { constants } = require('../config/constants');
 const axios = require('axios');
-const multer = require('multer');
-const request = require('request');
-const fs = require('fs');
-const FormData = require('form-data');
 const CarbonModel = require('../models/carbonModel');
 
 
