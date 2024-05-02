@@ -16,6 +16,9 @@ router.post('/resyncFileStatus', carbonController.resyncIndexedCarbonStatus);
 router.get('/listAllurlId', carbonController.listURLsAndCarbonIDs);
 router.post('/checkReadyIndexedCarbon', carbonController.checkReadyIndexedCarbon);
 
+router.post('/indexDataObjByObj', upload.single('file'), carbonController.indexDataObjByObj);
+
+
 //this is direct route for index data from browes AI anf index to carbon AI
 router.get('/fetchAndIndexData', aiController.fetchAndIndexData);
 

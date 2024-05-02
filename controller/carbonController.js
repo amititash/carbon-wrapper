@@ -2,6 +2,9 @@ const CarbonModel = require("../models/carbonModel");
 const axios = require("axios");
 const { constants } = require("../config/constants");
 const FormData = require("form-data");
+const readline = require('readline');
+const stream = require('stream');
+const fs = require('fs');
 
 //index the URL files
 async function indexFileViaURLs(req, res) {
@@ -372,6 +375,87 @@ async function checkReadyIndexedCarbon(req, res) {
 }
 
 
+//object by object indexing of json file 
+async function indexDataObjByObj(req, res) {
+    try {
+        const { customerId } = req.body;
+        const file = req.file;
+
+        // Check if file and customerId are provided
+        if (!file || !customerId) {
+            return res.status(400).json({ error: "Missing file or customerId parameter" });
+        }
+
+        try {
+            // Parse the JSON data
+            const jobListings = JSON.parse(file.buffer.toString('utf8'));
+
+            // Prepare to index individually
+            const result = [];
+            for (let i = 0; i < jobListings.length; i++) {
+                const job = jobListings[i];
+
+                console.log("this is job :::", job)
+
+                const requestBody = {
+                    contents: JSON.stringify(job),
+                    name: job.Title,
+                    chunk_size: 8000,
+                    chunk_overlap: 123,
+                    skip_embedding_generation: true,
+                    overwrite_file_id: null,
+                    embedding_model: "OPENAI",
+                };
+
+                // console.log("Request body:", requestBody);
+
+                // Send data to Carbon AI
+                try {
+                    const response = await axios.post(
+                        'https://api.carbon.ai/upload_text',
+                        requestBody,
+                        {
+                            headers: {
+                                Authorization: `Bearer ${constants.carbonApiKey}`,
+                                'Content-Type': 'application/json',
+                                "customer-id": customerId,
+                            }
+                        }
+                    );
+
+                    // console.log("Response from API:", response.data);
+
+                    // Collect data for saving to database
+                    let carbonData = {
+                        url: job.Title,
+                        customer_id: customerId,
+                        carbon: response.data,
+                    };
+                    result.push(carbonData);
+                } catch (error) {
+                    console.error("Error response from API:", error.response.data);
+                    return res.status(422).json({ error: error.response.data });
+                }
+            }
+
+            // Save results to the database
+            try {
+                await CarbonModel.CarbonDatas.insertMany(result);
+            } catch (error) {
+                console.error("Error saving data to database:", error.message);
+                return res.status(500).json({ error: "An error occurred while saving data to the database" });
+            }
+
+            return res.json({ status: true, message: "All objects uploaded and processed successfully" });
+        } catch (error) {
+            console.error("Error parsing JSON:", error);
+            return res.status(422).json({ error: "Error parsing JSON" });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
 
 module.exports = {
     indexFileViaURLs,
@@ -379,5 +463,6 @@ module.exports = {
     resyncIndexedCarbonStatus,
     listURLsAndCarbonIDs,
     indexWebURLs,
-    checkReadyIndexedCarbon
+    checkReadyIndexedCarbon,
+    indexDataObjByObj
 };

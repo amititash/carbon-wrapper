@@ -1,10 +1,12 @@
 const axios = require('axios');
 const { constants } = require('../config/constants');
+const BrowseModel = require("../models/browseAI");
+
 
 //fetch all data of robot
 async function fetchAllTaskofRobot(req, res) {
     try {
-        const robotId = req.query.robotId; // Extracting robotId from query parameters
+        const robotId = req.query.robotId;
         if (!robotId) {
             return res.status(400).json({ error: 'Missing required parameter: robotId' });
         }
@@ -41,9 +43,6 @@ async function fetchAllTaskofRobot(req, res) {
     }
 }
 
-
-
-
 //fetch the data of robot as per task id 
 async function fetchTaskofRobotById(req, res) {
     try {
@@ -66,20 +65,153 @@ async function fetchTaskofRobotById(req, res) {
             throw new Error(`Request failed with status code ${response.status}`);
         }
 
-        // Extracting post links from capturedLists
-        // const jobUrls = response.data.result.capturedLists?.Jobs.map(job => job['Post Link']).filter(url => url);
+        const jobs = response.data.result.capturedLists?.Jobs;
 
-        // return res.json({ status: true, jobUrls: jobUrls });
-        return res.json({ status: true, response: response.data });
+        // Save each job entry into the database
+        for (const job of jobs) {
+            let domain = null;
+            if (response.data.result.inputParameters && response.data.result.inputParameters.job_title) {
+                domain = response.data.result.inputParameters.job_title;
+            }
+            const newJob = new BrowseModel.BrowseDatas({
+                position: job.Position,
+                title: job.Title,
+                post_link: job['Post Link'],
+                company: job.Company,
+                company_profile: job['Company Profile'],
+                location: job.Location,
+                actively_status: job['Actively Status'],
+                description: job.Description,
+                seniority_level: job['Seniority level'],
+                employment_type: job['Employment type'],
+                job_function: job['Job function'],
+                industries: job.Industries,
+                time_ago: job['time ago'],
+                domain: domain
+            });
+            await newJob.save();
+        }
+
+        // console.log("this sis console :::", response.data.result);
+        console.log("Jobs saved successfully to the database");
+        return res.json({ status: true, message: "Jobs saved successfully", response: response.data.result });
+
+        // console.log("this sis console :::",response.data.result )
+        // return res.json({ status: true, response: response.data.result.capturedLists?.Jobs });
 
     } catch (error) {
-        // console.error("Error while fetching browser AI task data:", error);
-        return res.status(500).json({ error: 'Internal server error' });
+        console.error("Error while fetching browser AI task data:", error);
+        return res.status(500).json({ error: 'Internal server error', message: error.message });
     }
 }
 
 
+async function fetchDataOnbasisOfFields(req, res) {
+    try {
+        const userQuery = req.query.userQuery;
+
+        if (!userQuery) {
+            return res.status(400).json({ error: 'Missing required parameter: userQuery' });
+        }
+
+        // Specify the fields suitable for text search
+        const textSearchFields = ['title', 'company', 'company_profile', 'location', 'actively_status', 'seniority_level', 'employment_type', 'industries', 'domain'];
+
+        // const regex = new RegExp(userQuery, 'i');
+        // const regex = new RegExp(userQuery.split(/\s+/).join('.*'), 'i');
+        const regex = new RegExp(userQuery.split(/\s+/).join($or), 'i');
+
+        const query = {
+            $or: textSearchFields.map(field => ({ [field]: regex }))
+        };
+
+        console.log("query :: ", query);
+        const results = await BrowseModel.BrowseDatas.find(query);
+
+        if (!results || results.length === 0) {
+            return res.status(404).json({ message: 'Nothing to show' });
+        }
+
+        return res.json({ status: true, results });
+    } catch (error) {
+        console.error("Error while fetching results:", error);
+        return res.status(500).json({ error: 'Internal server error', message: error.message });
+    }
+}
+
+
+async function fetchResultsWithFilters(req, res) {
+    try {
+        const query = {};
+
+        for (const key in req.query) {
+            if (req.query.hasOwnProperty(key)) {
+                query[key] = { $regex: req.query[key], $options: 'i' };
+            }
+        }
+
+        console.log("query :: ", query);
+        const results = await BrowseModel.BrowseDatas.find(query);
+
+        if (!results || results.length === 0) {
+            return res.status(404).json({ message: 'No results found' });
+        }
+
+        return res.json({ status: true, results });
+    } catch (error) {
+        console.error("Error while fetching results:", error);
+        return res.status(500).json({ error: 'Internal server error', message: error.message });
+    }
+}
+
+
+
+
+// async function fetchResultsWithFiltersss(req, res) {
+//     try {
+//         const query = {};
+
+//         // limit query parameters
+//         const keys = Object.keys(req.query).slice(0, 2);
+
+//         for (const key of keys) {
+//             query[key] = { $regex: req.query[key], $options: 'i' };
+//         }
+
+//         // Implement pagination
+//         const page = parseInt(req.query.page) || 1;
+//         const pageSize = parseInt(req.query.pageSize) || 10;
+//         const skip = (page - 1) * pageSize;
+
+//         console.log("query :: ", query);
+//         const results = await BrowseModel.BrowseDatas.find(query)
+//             .limit(pageSize)
+//             .skip(skip);
+
+//         if (!results || results.length === 0) {
+//             return res.status(404).json({ message: 'No results found' });
+//         }
+
+//         return res.json({ status: true, results });
+//     } catch (error) {
+//         console.error("Error while fetching results:", error);
+//         return res.status(500).json({ error: 'Internal server error', message: error.message });
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
 module.exports = {
     fetchAllTaskofRobot,
-    fetchTaskofRobotById
+    fetchTaskofRobotById,
+    fetchDataOnbasisOfFields,
+    fetchResultsWithFilters,
+    // fetchResultsWithFiltersss
 };
