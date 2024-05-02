@@ -1,341 +1,518 @@
 {
-  "collection": {
-    "info": {
-      "_postman_id": "0743eea0-868f-4116-9e4a-43d27b92a920",
-      "name": "CARBON  & BROWSE AI",
-      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-      "updatedAt": "2024-03-15T10:45:09.000Z",
-      "uid": "24998398-0743eea0-868f-4116-9e4a-43d27b92a920",
-      "createdAt": null,
-      "lastUpdatedBy": null
-    },
-    "item": [
-      {
-        "name": "browse.ai API",
+    "collection": {
+        "info": {
+            "_postman_id": "cb2d59e7-75a7-441f-9d3d-28429593fd71",
+            "name": "CARBON  & BROWSE AI",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+            "updatedAt": "2024-04-16T13:02:31.000Z",
+            "uid": "34274153-cb2d59e7-75a7-441f-9d3d-28429593fd71",
+            "createdAt": null,
+            "lastUpdatedBy": null
+        },
         "item": [
-          {
-            "name": "robot all Task",
-            "id": "fa88e112-ab46-46cc-a687-9e910d6384e2",
-            "protocolProfileBehavior": {
-              "disableBodyPruning": true
+            {
+                "name": "browse.ai API",
+                "item": [
+                    {
+                        "name": "robot all Task",
+                        "id": "918814b7-ea76-460a-84b0-265f365a5a21",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "localhost:3000/browse/fetchAllRobotTask?robotId=f2170f89-fcc3-4b0d-a085-f8a3d80f2d5a",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "browse",
+                                    "fetchAllRobotTask"
+                                ],
+                                "query": [
+                                    {
+                                        "key": "robotId",
+                                        "value": "f2170f89-fcc3-4b0d-a085-f8a3d80f2d5a"
+                                    }
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "34274153-918814b7-ea76-460a-84b0-265f365a5a21"
+                    },
+                    {
+                        "name": "fetch data by robot & task ID",
+                        "id": "c19b63ca-2004-4cf9-be69-092086b69b35",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\r\n    \"robotId\":\"f2170f89-fcc3-4b0d-a085-f8a3d80f2d5a\"\r\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "localhost:3100/browse/fetchRobotTaskById?robotId=fc31a8e1-ede2-460f-b3c2-e23e4302f9c9&taskId=4ae7729e-1852-4259-b5b5-d7aff3cd1218",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "3100",
+                                "path": [
+                                    "browse",
+                                    "fetchRobotTaskById"
+                                ],
+                                "query": [
+                                    {
+                                        "key": "robotId",
+                                        "value": "fc31a8e1-ede2-460f-b3c2-e23e4302f9c9"
+                                    },
+                                    {
+                                        "key": "taskId",
+                                        "value": "4ae7729e-1852-4259-b5b5-d7aff3cd1218"
+                                    }
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "34274153-c19b63ca-2004-4cf9-be69-092086b69b35"
+                    },
+                    {
+                        "name": "fetch data fron DB",
+                        "id": "a95821b6-c520-4c4e-bf88-7bf283db0083",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "localhost:3100/browse/fetchDataFromDb?userQuery=chatGPT",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "3100",
+                                "path": [
+                                    "browse",
+                                    "fetchDataFromDb"
+                                ],
+                                "query": [
+                                    {
+                                        "key": "userQuery",
+                                        "value": "chatGPT"
+                                    }
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "34274153-a95821b6-c520-4c4e-bf88-7bf283db0083"
+                    },
+                    {
+                        "name": "fetch data with schema fields",
+                        "id": "170847c1-5ad8-4a3b-891f-bc92b47d70fb",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "localhost:3100/browse/fetchResultsWithFilters?title=ai&seniority_level=Entry",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "3100",
+                                "path": [
+                                    "browse",
+                                    "fetchResultsWithFilters"
+                                ],
+                                "query": [
+                                    {
+                                        "key": "title",
+                                        "value": "ai",
+                                        "type": "text"
+                                    },
+                                    {
+                                        "key": "seniority_level",
+                                        "value": "Entry",
+                                        "type": "text"
+                                    }
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "34274153-170847c1-5ad8-4a3b-891f-bc92b47d70fb"
+                    }
+                ],
+                "id": "ccad27d0-8cec-4ba3-9398-57317f277647",
+                "uid": "34274153-ccad27d0-8cec-4ba3-9398-57317f277647"
             },
-            "request": {
-              "method": "GET",
-              "header": [],
-              "body": {
-                "mode": "raw",
-                "raw": "",
-                "options": {
-                  "raw": {
-                    "language": "json"
-                  }
-                }
-              },
-              "url": {
-                "raw": "localhost:3000/browse/fetchAllRobotTask?robotId=f2170f89-fcc3-4b0d-a085-f8a3d80f2d5a",
-                "host": ["localhost"],
-                "port": "3000",
-                "path": ["browse", "fetchAllRobotTask"],
-                "query": [
-                  {
-                    "key": "robotId",
-                    "value": "f2170f89-fcc3-4b0d-a085-f8a3d80f2d5a"
-                  }
-                ]
-              }
-            },
-            "response": [],
-            "uid": "24998398-fa88e112-ab46-46cc-a687-9e910d6384e2"
-          },
-          {
-            "name": "fetch robot task by  Id",
-            "id": "1897d384-4ac5-4614-b84d-fcca2ed14b87",
-            "protocolProfileBehavior": {
-              "disableBodyPruning": true
-            },
-            "request": {
-              "method": "GET",
-              "header": [],
-              "body": {
-                "mode": "raw",
-                "raw": "{\r\n    \"robotId\":\"f2170f89-fcc3-4b0d-a085-f8a3d80f2d5a\"\r\n}",
-                "options": {
-                  "raw": {
-                    "language": "json"
-                  }
-                }
-              },
-              "url": {
-                "raw": "localhost:3000/browse/fetchRobotTaskById?robotId=fc31a8e1-ede2-460f-b3c2-e23e4302f9c9&taskId=4ae7729e-1852-4259-b5b5-d7aff3cd1218",
-                "host": ["localhost"],
-                "port": "3000",
-                "path": ["browse", "fetchRobotTaskById"],
-                "query": [
-                  {
-                    "key": "robotId",
-                    "value": "fc31a8e1-ede2-460f-b3c2-e23e4302f9c9"
-                  },
-                  {
-                    "key": "taskId",
-                    "value": "4ae7729e-1852-4259-b5b5-d7aff3cd1218"
-                  }
-                ]
-              }
-            },
-            "response": [],
-            "uid": "24998398-1897d384-4ac5-4614-b84d-fcca2ed14b87"
-          }
-        ],
-        "id": "8cdf9dee-3d14-47f0-9333-02f5a9400fe2",
-        "uid": "24998398-8cdf9dee-3d14-47f0-9333-02f5a9400fe2"
-      },
-      {
-        "name": "carbon.ai API",
-        "item": [
-          {
-            "name": "combine test",
-            "id": "cd3afef3-3f1d-4b05-9364-dce5ebcfdf5c",
-            "protocolProfileBehavior": {
-              "disableBodyPruning": true
-            },
-            "request": {
-              "method": "GET",
-              "header": [
-                {
-                  "key": "",
-                  "value": "",
-                  "type": "text"
-                }
-              ],
-              "body": {
-                "mode": "raw",
-                "raw": "",
-                "options": {
-                  "raw": {
-                    "language": "json"
-                  }
-                }
-              },
-              "url": {
-                "raw": "localhost:3000/carbon/fetchAndIndexData?robotId=f2170f89-fcc3-4b0d-a085-f8a3d80f2d5a&customerId=global-jobs&taskId=b1b25ec9-91a7-46bf-aca9-fcf3dc639e1d",
-                "host": ["localhost"],
-                "port": "3000",
-                "path": ["carbon", "fetchAndIndexData"],
-                "query": [
-                  {
-                    "key": "robotId",
-                    "value": "f2170f89-fcc3-4b0d-a085-f8a3d80f2d5a"
-                  },
-                  {
-                    "key": "customerId",
-                    "value": "global-jobs"
-                  },
-                  {
-                    "key": "taskId",
-                    "value": "b1b25ec9-91a7-46bf-aca9-fcf3dc639e1d"
-                  }
-                ]
-              }
-            },
-            "response": [],
-            "uid": "24998398-cd3afef3-3f1d-4b05-9364-dce5ebcfdf5c"
-          },
-          {
-            "name": "Upload file with URL",
-            "id": "8e028097-fe37-45dd-9681-4200b70892ca",
-            "protocolProfileBehavior": {
-              "disableBodyPruning": true
-            },
-            "request": {
-              "method": "POST",
-              "header": [
-                {
-                  "key": "",
-                  "value": "",
-                  "type": "text"
-                }
-              ],
-              "body": {
-                "mode": "raw",
-                "raw": "{\r\n    \"urls\": [\r\n        \"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg\",\r\n        \"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg\",\r\n        \"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg\",\r\n        \"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg\",\r\n        \"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg\"\r\n    ],\r\n    \"customerId\": \"ran-ts-1\"\r\n}",
-                "options": {
-                  "raw": {
-                    "language": "json"
-                  }
-                }
-              },
-              "url": {
-                "raw": "localhost:3000/carbon/indexUrls",
-                "host": ["localhost"],
-                "port": "3000",
-                "path": ["carbon", "indexUrls"]
-              }
-            },
-            "response": [],
-            "uid": "24998398-8e028097-fe37-45dd-9681-4200b70892ca"
-          },
-          {
-            "name": "index by web Scraping",
-            "id": "a277bc1d-b9cc-4554-a298-60935583a9bf",
-            "protocolProfileBehavior": {
-              "disableBodyPruning": true
-            },
-            "request": {
-              "method": "POST",
-              "header": [
-                {
-                  "key": "",
-                  "value": "",
-                  "type": "text"
-                }
-              ],
-              "body": {
-                "mode": "raw",
-                "raw": "{\r\n    \"urls\": [\r\n        \"https://drive.google.com/drive/u/1/folders/1Pj9cKSu0VxU_6YyJQfNhHNilwgd6BZpE\"\r\n    ],\r\n    \"customerId\": \"global-jobs\",\r\n    \"pages\": 1,\r\n    \"depth\": 1\r\n}",
-                "options": {
-                  "raw": {
-                    "language": "json"
-                  }
-                }
-              },
-              "url": {
-                "raw": "localhost:3000/carbon/indexWebUrls",
-                "host": ["localhost"],
-                "port": "3000",
-                "path": ["carbon", "indexWebUrls"]
-              }
-            },
-            "response": [],
-            "uid": "24998398-a277bc1d-b9cc-4554-a298-60935583a9bf"
-          },
-          {
-            "name": "Upload file CSV, PDF",
-            "id": "b2d670d2-e45c-4453-86d5-12b03764abb7",
-            "protocolProfileBehavior": {
-              "disableBodyPruning": true
-            },
-            "request": {
-              "method": "POST",
-              "header": [],
-              "body": {
-                "mode": "formdata",
-                "formdata": [
-                  {
-                    "key": "files",
-                    "type": "file",
-                    "src": "/C:/Users/Deepak Singh Parihar/Downloads/White Paper_ Vision for Establishing a Generative AI Lab.pdf"
-                  },
-                  {
-                    "key": "customerId",
-                    "value": "unilab-kb",
-                    "type": "text"
-                  }
-                ]
-              },
-              "url": {
-                "raw": "localhost:3000/carbon/indexFiles",
-                "host": ["localhost"],
-                "port": "3000",
-                "path": ["carbon", "indexFiles"]
-              }
-            },
-            "response": [],
-            "uid": "24998398-b2d670d2-e45c-4453-86d5-12b03764abb7"
-          },
-          {
-            "name": "resync Indexed Carbon Status",
-            "id": "c13a0924-c2cd-4695-b4bb-dd31dc2c90fc",
-            "protocolProfileBehavior": {
-              "disableBodyPruning": true
-            },
-            "request": {
-              "method": "POST",
-              "header": [],
-              "body": {
-                "mode": "raw",
-                "raw": "{\r\n    \"carbonId\": 4778972\r\n}",
-                "options": {
-                  "raw": {
-                    "language": "json"
-                  }
-                }
-              },
-              "url": {
-                "raw": "localhost:3000/carbon/resyncFileStatus",
-                "host": ["localhost"],
-                "port": "3000",
-                "path": ["carbon", "resyncFileStatus"]
-              }
-            },
-            "response": [],
-            "uid": "24998398-c13a0924-c2cd-4695-b4bb-dd31dc2c90fc"
-          },
-          {
-            "name": "list All URL and customer ID",
-            "id": "1da5764d-30a7-4ec2-baa7-0cca3b4078bc",
-            "protocolProfileBehavior": {
-              "disableBodyPruning": true
-            },
-            "request": {
-              "method": "GET",
-              "header": [
-                {
-                  "key": "customer-id",
-                  "value": "1234567890",
-                  "type": "text"
-                }
-              ],
-              "body": {
-                "mode": "raw",
-                "raw": "",
-                "options": {
-                  "raw": {
-                    "language": "json"
-                  }
-                }
-              },
-              "url": {
-                "raw": "localhost:3000/carbon/listAllurlId",
-                "host": ["localhost"],
-                "port": "3000",
-                "path": ["carbon", "listAllurlId"]
-              }
-            },
-            "response": [],
-            "uid": "24998398-1da5764d-30a7-4ec2-baa7-0cca3b4078bc"
-          },
-          {
-            "name": "check READY status and all indexed carbon of customer",
-            "id": "74978efa-0c2f-46fb-bc03-c474072b19a2",
-            "protocolProfileBehavior": {
-              "disableBodyPruning": true
-            },
-            "request": {
-              "method": "POST",
-              "header": [],
-              "body": {
-                "mode": "raw",
-                "raw": "{\r\n    \"customerId\":\"unilab-kb\"\r\n}",
-                "options": {
-                  "raw": {
-                    "language": "json"
-                  }
-                }
-              },
-              "url": {
-                "raw": "localhost:3000/carbon/checkReadyIndexedCarbon",
-                "host": ["localhost"],
-                "port": "3000",
-                "path": ["carbon", "checkReadyIndexedCarbon"]
-              }
-            },
-            "response": [],
-            "uid": "24998398-74978efa-0c2f-46fb-bc03-c474072b19a2"
-          }
-        ],
-        "id": "0c99f176-24f7-42e2-827e-d51681eb1537",
-        "uid": "24998398-0c99f176-24f7-42e2-827e-d51681eb1537"
-      }
-    ]
-  }
+            {
+                "name": "carbon.ai API",
+                "item": [
+                    {
+                        "name": "combine test",
+                        "id": "30714677-4328-4739-8c51-142c4f621c93",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [
+                                {
+                                    "key": "",
+                                    "value": "",
+                                    "type": "text"
+                                }
+                            ],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "localhost:3000/carbon/fetchAndIndexData?robotId=f2170f89-fcc3-4b0d-a085-f8a3d80f2d5a&customerId=global-jobs&taskId=b1b25ec9-91a7-46bf-aca9-fcf3dc639e1d",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "carbon",
+                                    "fetchAndIndexData"
+                                ],
+                                "query": [
+                                    {
+                                        "key": "robotId",
+                                        "value": "f2170f89-fcc3-4b0d-a085-f8a3d80f2d5a"
+                                    },
+                                    {
+                                        "key": "customerId",
+                                        "value": "global-jobs"
+                                    },
+                                    {
+                                        "key": "taskId",
+                                        "value": "b1b25ec9-91a7-46bf-aca9-fcf3dc639e1d"
+                                    }
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "34274153-30714677-4328-4739-8c51-142c4f621c93"
+                    },
+                    {
+                        "name": "Upload file with URL",
+                        "id": "c0a9c2a1-cee0-4191-b58e-5a84415f829c",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [
+                                {
+                                    "key": "",
+                                    "value": "",
+                                    "type": "text"
+                                }
+                            ],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\r\n    \"urls\": [\r\n        \"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg\",\r\n        \"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg\",\r\n        \"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg\",\r\n        \"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg\",\r\n        \"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg\"\r\n    ],\r\n    \"customerId\": \"ran-ts-1\"\r\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "localhost:3000/carbon/indexUrls",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "carbon",
+                                    "indexUrls"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "34274153-c0a9c2a1-cee0-4191-b58e-5a84415f829c"
+                    },
+                    {
+                        "name": "index by web Scraping",
+                        "id": "7e61b7b5-94c7-4d60-a897-671778284c5a",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [
+                                {
+                                    "key": "",
+                                    "value": "",
+                                    "type": "text"
+                                }
+                            ],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\r\n    \"urls\": [\r\n        \"https://drive.google.com/drive/u/1/folders/1Pj9cKSu0VxU_6YyJQfNhHNilwgd6BZpE\"\r\n    ],\r\n    \"customerId\": \"global-jobs\",\r\n    \"pages\": 1,\r\n    \"depth\": 1\r\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "localhost:3000/carbon/indexWebUrls",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "carbon",
+                                    "indexWebUrls"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "34274153-7e61b7b5-94c7-4d60-a897-671778284c5a"
+                    },
+                    {
+                        "name": "Upload file | CSV, PDF",
+                        "id": "ec034038-482e-456c-b54b-0ac080234e25",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [],
+                            "body": {
+                                "mode": "formdata",
+                                "formdata": [
+                                    {
+                                        "key": "files",
+                                        "type": "file",
+                                        "fileNotInWorkingDirectoryWarning": "This file isn't in your working directory. Teammates you share this request with won't be able to use this file. To make collaboration easier you can setup your working directory in Settings.",
+                                        "filesNotInWorkingDirectory": [
+                                            "/Users/dev/Downloads/extract-job-listings-information-from-linkedin_jobs_captured-list_2024-04-29_59a440f0-eb2e-4b43-ac22-a0a0baa684f4.json"
+                                        ],
+                                        "src": "/Users/dev/Downloads/extract-job-listings-information-from-linkedin_jobs_captured-list_2024-04-29_59a440f0-eb2e-4b43-ac22-a0a0baa684f4.json"
+                                    },
+                                    {
+                                        "key": "customerId",
+                                        "value": "rbr-test1",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            "url": {
+                                "raw": "localhost:3100/carbon/indexFiles",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "3100",
+                                "path": [
+                                    "carbon",
+                                    "indexFiles"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "34274153-ec034038-482e-456c-b54b-0ac080234e25"
+                    },
+                    {
+                        "name": "Upload file |  JSON | Obj by Obj",
+                        "id": "76d3ba02-3dfb-43b1-bee6-cba0c83c4747",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [],
+                            "body": {
+                                "mode": "formdata",
+                                "formdata": [
+                                    {
+                                        "key": "file",
+                                        "type": "file",
+                                        "fileNotInWorkingDirectoryWarning": "This file isn't in your working directory. Teammates you share this request with won't be able to use this file. To make collaboration easier you can setup your working directory in Settings.",
+                                        "filesNotInWorkingDirectory": [
+                                            "/Users/dev/Downloads/extract-job-listings-information-from-linkedin_jobs_captured-list_2024-04-29_59a440f0-eb2e-4b43-ac22-a0a0baa684f4.json"
+                                        ],
+                                        "src": "/Users/dev/Downloads/extract-job-listings-information-from-linkedin_jobs_captured-list_2024-04-29_59a440f0-eb2e-4b43-ac22-a0a0baa684f4.json"
+                                    },
+                                    {
+                                        "key": "customerId",
+                                        "value": "jsonDBT5",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            "url": {
+                                "raw": "http://localhost:3100/carbon/indexDataObjByObj",
+                                "protocol": "http",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "3100",
+                                "path": [
+                                    "carbon",
+                                    "indexDataObjByObj"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "34274153-76d3ba02-3dfb-43b1-bee6-cba0c83c4747"
+                    },
+                    {
+                        "name": "resync Indexed Carbon Status",
+                        "id": "550e4a91-7a3a-4253-8f8b-446e23aeabc2",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\r\n    \"carbonId\": 4778972\r\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "localhost:3000/carbon/resyncFileStatus",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "carbon",
+                                    "resyncFileStatus"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "34274153-550e4a91-7a3a-4253-8f8b-446e23aeabc2"
+                    },
+                    {
+                        "name": "list All URL and customer ID",
+                        "id": "6e0264c1-9a3e-47d9-be40-3a2ce577ca1f",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "GET",
+                            "header": [
+                                {
+                                    "key": "customer-id",
+                                    "value": "1234567890",
+                                    "type": "text"
+                                }
+                            ],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "localhost:3000/carbon/listAllurlId",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "3000",
+                                "path": [
+                                    "carbon",
+                                    "listAllurlId"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "34274153-6e0264c1-9a3e-47d9-be40-3a2ce577ca1f"
+                    },
+                    {
+                        "name": "check READY status and all indexed carbon of customer",
+                        "id": "dcf48290-dc2a-4b68-b190-2797984bd995",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\r\n    \"customerId\":\"adaptiv_kb\"\r\n}",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "localhost:3100/carbon/checkReadyIndexedCarbon",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "3100",
+                                "path": [
+                                    "carbon",
+                                    "checkReadyIndexedCarbon"
+                                ]
+                            }
+                        },
+                        "response": [],
+                        "uid": "34274153-dcf48290-dc2a-4b68-b190-2797984bd995"
+                    }
+                ],
+                "id": "cdfca719-2b3d-4064-87b2-28088b243ab6",
+                "uid": "34274153-cdfca719-2b3d-4064-87b2-28088b243ab6"
+            }
+        ]
+    }
 }

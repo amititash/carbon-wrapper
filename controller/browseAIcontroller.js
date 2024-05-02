@@ -115,7 +115,7 @@ async function fetchDataOnbasisOfFields(req, res) {
         }
 
         // Specify the fields suitable for text search
-        const textSearchFields = ['title', 'company', 'company_profile', 'location', 'actively_status', 'seniority_level', 'employment_type', 'industries', 'domain'];
+        const textSearchFields = ['title', 'company', 'company_profile', 'location', 'description', 'actively_status', 'seniority_level', 'employment_type', 'industries', 'domain'];
 
         // const regex = new RegExp(userQuery, 'i');
         // const regex = new RegExp(userQuery.split(/\s+/).join('.*'), 'i');
