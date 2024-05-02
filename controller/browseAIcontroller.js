@@ -119,7 +119,7 @@ async function fetchDataOnbasisOfFields(req, res) {
 
         // const regex = new RegExp(userQuery, 'i');
         // const regex = new RegExp(userQuery.split(/\s+/).join('.*'), 'i');
-        const regex = new RegExp(userQuery.split(/\s+/).join($or), 'i');
+        const regex = new RegExp(userQuery.split(/\s+/).join('|'), 'i');
 
         const query = {
             $or: textSearchFields.map(field => ({ [field]: regex }))
