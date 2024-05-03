@@ -5,7 +5,7 @@ const {
     carbonApiUrl,
     browse_AI_key,
     browse_AI_Url,
-    // robot_id_Extract_LinkedIn_job,
+    OPENAI_API_KEY
 
 } = process.env;
 
@@ -16,7 +16,7 @@ const constants = {
     carbonApiUrl,
     browse_AI_key,
     browse_AI_Url,
-    // robot_id_Extract_LinkedIn_job
+    OPENAI_API_KEY
 };
 
 module.exports = {

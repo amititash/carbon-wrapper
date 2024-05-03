@@ -42,7 +42,22 @@ const BrowseDataSchema = new mongoose.Schema({
     },
     domain: {
         type: String
-    }
+    },
+    hardskills: [{
+        type: String
+    }],
+    tools: [{
+        type: String
+    }],
+    softskills: [{
+        type: String
+    }],
+    qualifications: [{
+        type: String
+    }],
+    salary_range: [{
+        type: String
+    }]
 },
     {
         timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }

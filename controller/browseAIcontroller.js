@@ -1,6 +1,7 @@
 const axios = require('axios');
 const { constants } = require('../config/constants');
 const BrowseModel = require("../models/browseAI");
+const openAIcontroller = require("./openAIcontroller");
 
 
 //fetch all data of robot
@@ -67,12 +68,54 @@ async function fetchTaskofRobotById(req, res) {
 
         const jobs = response.data.result.capturedLists?.Jobs;
 
+
         // Save each job entry into the database
         for (const job of jobs) {
             let domain = null;
             if (response.data.result.inputParameters && response.data.result.inputParameters.job_title) {
                 domain = response.data.result.inputParameters.job_title;
             }
+
+            const description = job.Description;
+            const extractedData = await openAIcontroller(description);
+
+            console.log("Extracted Data:", extractedData);
+
+            let hardskills = [];
+            let tools = [];
+            let softskills = [];
+            let qualifications = [];
+            let salary_range = [];
+
+            if (extractedData && Array.isArray(extractedData.graph_params)) {
+                console.log("graph_params:", extractedData.graph_params);
+                console.log("Type of graph_params:", typeof extractedData.graph_params);
+
+                if (extractedData.graph_params.length > 0) {
+                    const graph_params = extractedData.graph_params[0];
+                    console.log("graph params ::", graph_params);
+
+                    if (graph_params) {
+                        hardskills = graph_params.hardskills || [];
+                        tools = graph_params.tools || [];
+                        softskills = graph_params.softskills || [];
+                        qualifications = graph_params.qualifications || [];
+                        salary_range = graph_params.salary_range || [];
+                    }
+                } else {
+                    console.error("graph_params is an empty array");
+                }
+            } else {
+                console.error("extractedData or extractedData.graph_params is undefined or not an array");
+            }
+
+            console.log("hardskills ::: ", hardskills);
+            console.log("tools ::: ", tools);
+            console.log("softskills ::: ", softskills);
+            console.log("qualifications ::: ", qualifications);
+            console.log("salary_range ::: ", salary_range);
+
+
             const newJob = new BrowseModel.BrowseDatas({
                 position: job.Position,
                 title: job.Title,
@@ -87,7 +130,12 @@ async function fetchTaskofRobotById(req, res) {
                 job_function: job['Job function'],
                 industries: job.Industries,
                 time_ago: job['time ago'],
-                domain: domain
+                domain: domain,
+                hardskills: hardskills,
+                tools: tools,
+                softskills: softskills,
+                qualifications: qualifications,
+                salary_range: salary_range
             });
             await newJob.save();
         }
