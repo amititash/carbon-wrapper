@@ -8,7 +8,11 @@ const { connectToMongoDb } = require('./db');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-const port = constants.PORT || 3000;    
+const morgan = require('morgan');
+
+const port = constants.PORT || 3000;  
+
+app.use(morgan('combined'));
 
 app.use(bodyParser.json());
 app.use(cors());

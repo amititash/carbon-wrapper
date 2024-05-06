@@ -67,9 +67,9 @@ async function fetchTaskofRobotById(req, res) {
         }
 
         const jobs = response.data.result.capturedLists?.Jobs;
+        const savedJobs = [];
 
-
-        // Save each job entry into the database
+        // Save each job to db
         for (const job of jobs) {
             let domain = null;
             if (response.data.result.inputParameters && response.data.result.inputParameters.job_title) {
@@ -79,79 +79,60 @@ async function fetchTaskofRobotById(req, res) {
             const description = job.Description;
             const extractedData = await openAIcontroller(description);
 
-            console.log("Extracted Data:", extractedData);
+            // console.log("Extracted Data:", extractedData);
 
-            let hardskills = [];
-            let tools = [];
-            let softskills = [];
-            let qualifications = [];
-            let salary_range = [];
+            if (extractedData) {
+                const parsedData = JSON.parse(extractedData);
+                
+                if (parsedData.graph_params) {
+                    const graphParams = parsedData.graph_params[0];
+                    if (graphParams) {
+                        const { hardskills, tools, softskills, qualifications, salary_range } = graphParams;
 
-            if (extractedData && Array.isArray(extractedData.graph_params)) {
-                console.log("graph_params:", extractedData.graph_params);
-                console.log("Type of graph_params:", typeof extractedData.graph_params);
+                        const newJob = new BrowseModel.BrowseDatas({
+                            position: job.Position,
+                            title: job.Title,
+                            post_link: job['Post Link'],
+                            company: job.Company,
+                            company_profile: job['Company Profile'],
+                            location: job.Location,
+                            actively_status: job['Actively Status'],
+                            description: job.Description,
+                            seniority_level: job['Seniority level'],
+                            employment_type: job['Employment type'],
+                            job_function: job['Job function'],
+                            industries: job.Industries,
+                            time_ago: job['time ago'],
+                            domain: domain,
+                            hardskills: hardskills,
+                            tools: tools,
+                            softskills: softskills,
+                            qualifications: qualifications,
+                            salary_range: salary_range
+                        });
 
-                if (extractedData.graph_params.length > 0) {
-                    const graph_params = extractedData.graph_params[0];
-                    console.log("graph params ::", graph_params);
-
-                    if (graph_params) {
-                        hardskills = graph_params.hardskills || [];
-                        tools = graph_params.tools || [];
-                        softskills = graph_params.softskills || [];
-                        qualifications = graph_params.qualifications || [];
-                        salary_range = graph_params.salary_range || [];
+                        await newJob.save();
+                        savedJobs.push(newJob);
+                        // console.log("Job saved successfully:", newJob);
+                    } else {
+                        console.error("Graph params is undefined");
                     }
                 } else {
-                    console.error("graph_params is an empty array");
+                    console.error("graph_params is undefined");
                 }
             } else {
-                console.error("extractedData or extractedData.graph_params is undefined or not an array");
+                console.error("Extracted data is undefined");
             }
-
-            console.log("hardskills ::: ", hardskills);
-            console.log("tools ::: ", tools);
-            console.log("softskills ::: ", softskills);
-            console.log("qualifications ::: ", qualifications);
-            console.log("salary_range ::: ", salary_range);
-
-
-            const newJob = new BrowseModel.BrowseDatas({
-                position: job.Position,
-                title: job.Title,
-                post_link: job['Post Link'],
-                company: job.Company,
-                company_profile: job['Company Profile'],
-                location: job.Location,
-                actively_status: job['Actively Status'],
-                description: job.Description,
-                seniority_level: job['Seniority level'],
-                employment_type: job['Employment type'],
-                job_function: job['Job function'],
-                industries: job.Industries,
-                time_ago: job['time ago'],
-                domain: domain,
-                hardskills: hardskills,
-                tools: tools,
-                softskills: softskills,
-                qualifications: qualifications,
-                salary_range: salary_range
-            });
-            await newJob.save();
         }
 
-        // console.log("this sis console :::", response.data.result);
         console.log("Jobs saved successfully to the database");
-        return res.json({ status: true, message: "Jobs saved successfully", response: response.data.result });
-
-        // console.log("this sis console :::",response.data.result )
-        // return res.json({ status: true, response: response.data.result.capturedLists?.Jobs });
-
+        return res.json({ status: true, message: "Jobs saved successfully", savedJobs });
     } catch (error) {
         console.error("Error while fetching browser AI task data:", error);
         return res.status(500).json({ error: 'Internal server error', message: error.message });
     }
 }
+
 
 
 async function fetchDataOnbasisOfFields(req, res) {

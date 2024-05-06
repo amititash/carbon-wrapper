@@ -12,13 +12,13 @@ const openaiClient = new openai.OpenAI({
 async function summarizeJobDescription(jobDescription) {
     try {
         const openai_response_model = {
-            "graph_params": [
+            graph_params: [
                 {
-                    "hardskills": ['skill one', 'skill two'],
-                    "tools": ['tool one', 'tool two'],
-                    "softskills": ['speaking', 'writing'],
-                    "qualifications": ['qualifications one', 'qualifications two'],
-                    "salary_range": ['starting salary_range', 'ending salary_range']
+                    hardskills: ['skill one', 'skill two'],
+                    tools: ['tool one', 'tool two'],
+                    softskills: ['speaking', 'writing'],
+                    qualifications: ['qualifications one', 'qualifications two'],
+                    salary_range: ['starting salary_range', 'ending salary_range']
                 }
             ]
         };
@@ -55,7 +55,7 @@ async function summarizeJobDescription(jobDescription) {
         });
 
         const openaiResponseJson = openaiResponse.choices[0].message.content;
-        console.log("OpenAI Response:", openaiResponseJson);
+        // console.log("OpenAI Response:", openaiResponseJson);
         return openaiResponseJson
     } catch (error) {
         console.error("Error while summarizing job description:", error);
