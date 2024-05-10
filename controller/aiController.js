@@ -1,3 +1,8 @@
+/*
+    * Method to fetch data from browes AI and index in carbon using WEB SCRAP
+*/
+
+
 const { constants } = require('../config/constants');
 const axios = require('axios');
 const CarbonModel = require('../models/carbonModel');
