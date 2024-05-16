@@ -10,6 +10,7 @@ const {
     Neo4j_USER,
     Neo4j_PASSWORD,
     Neo4j_DATABASE,
+    ALLOWED_CUSTOMER_IDS,
 
 } = process.env;
 
@@ -25,6 +26,7 @@ const constants = {
     Neo4j_USER,
     Neo4j_PASSWORD,
     Neo4j_DATABASE,
+    ALLOWED_CUSTOMER_IDS,
 };
 
 module.exports = {

@@ -31,38 +31,7 @@ const connectToMongoDb = () => {
     });
 };
 
-/*
-    * Method for connecting to neo4j
-*/
-
-const connectToNeo4j = () => {
-    const uri = constants.Neo4j_URI;
-    const user = constants.Neo4j_USER;
-    const password = constants.Neo4j_PASSWORD;
-    const dbName = constants.Neo4j_DATABASE;
-
-    const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
-    const session = driver.session({ database: dbName });
-
-    //Neo4j connection status
-    driver.getServerInfo()
-        .then((serverInfo) => {
-            console.log('Connected to Neo4j on :', serverInfo.address);
-        })
-        .catch((error) => {
-            console.error('Failed to connect to Neo4j:', error.message);
-        });
-
-    // Handle driver errors
-    driver.onError = (error) => {
-        console.error('Neo4j driver instantiation failed:', error);
-    };
-
-    return session;
-};
-
 
 module.exports = {
-    connectToMongoDb,
-    connectToNeo4j
+    connectToMongoDb
 };

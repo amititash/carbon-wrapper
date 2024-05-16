@@ -18,6 +18,8 @@ router.post('/checkReadyIndexedCarbon', carbonController.checkReadyIndexedCarbon
 
 router.post('/indexDataObjByObj', upload.single('file'), carbonController.indexDataObjByObj);
 
+router.post('/indexDatafromPlayground', upload.array('files'), carbonController.indexDatafromPlayground);
+
 
 //this is direct route for index data from browes AI anf index to carbon AI
 router.get('/fetchAndIndexData', aiController.fetchAndIndexData);

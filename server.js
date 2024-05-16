@@ -4,7 +4,7 @@ const express = require('express');
 const carbonRoutes = require('./routes/carbonRoutes');
 const browseRoutes = require('./routes/browseAIroutes');
 const { constants } = require('./config');
-const { connectToMongoDb, connectToNeo4j } = require('./db');
+const { connectToMongoDb } = require('./db');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
@@ -23,9 +23,6 @@ app.use('/browse', browseRoutes);
 
 //connect to mongo DB
 connectToMongoDb();
-
-//connect to neo4j
-connectToNeo4j();
 
 // Start the server
 app.listen(port, () => {

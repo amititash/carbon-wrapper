@@ -11,7 +11,6 @@ async function indexFileViaURLs(req, res) {
     try {
         const { urls, customerId } = req.body;
 
-        //validataion
         if (!urls || !customerId) {
             return res.status(400).json({ error: "Missing required parameters" });
         }
@@ -41,23 +40,27 @@ async function indexFileViaURLs(req, res) {
 
                 result.push(carbonData);
             } catch (error) {
-                // Handle error for individual URL request
                 console.error(`Error processing URL: ${url}`, error.message);
-                // choosing continue, it will just skip to the next URL
+                result.push({ message: `Error in processing URL: ${url}`, error: error.message });
                 continue;
             }
         }
         // Save results to the database
         try {
-            console.log("Saving data to database:", result);
-            await CarbonModel.CarbonDatas.insertMany(result);
+            if (result.length > 0) {
+                console.log("Saving data to database:", result);
+                await CarbonModel.CarbonDatas.insertMany(result);
+            }
         } catch (error) {
             console.error("Error saving data to database:", error.message);
-            return res
-                .status(500)
-                .json({ error: "An error occurred while saving data to the database" });
+            return res.status(500).json({ error: "An error occurred while saving data to the database" });
         }
-        return res.json({ status: true, response: result });
+
+        if (result.length > 0) {
+            return res.status(200).json({ status: true, message: "URLs successfully indexed in Carbon.", response: result });
+        } else {
+            return res.status(400).json({ error: "All URLs failed to index." });
+        }
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -112,7 +115,6 @@ async function indexFiles(req, res) {
         const { customerId } = req.body;
         const files = req.files;
 
-        // Validation
         if (!files || !customerId) {
             return res.status(400).json({ error: "Missing required parameters" });
         }
@@ -141,15 +143,24 @@ async function indexFiles(req, res) {
                 customer_id: customerId,
                 carbon: response.data,
             };
-
-            // Push result to the array
             result.push(carbonData);
         }
 
         // Save results to the database
-        await CarbonModel.CarbonDatas.insertMany(result);
-
-        return res.json({ status: true, response: result });
+        try {
+            if (result.length > 0) {
+                await CarbonModel.CarbonDatas.insertMany(result);
+            }
+        } catch (error) {
+            console.error("Error saving data to database:", error.message);
+            return res.status(500).json({ error: "An error occurred while saving data to the database" });
+        }
+        // Returning response
+        if (result.length > 0) {
+            return res.json({ status: true, message: "Files successfully indexed in Carbon.", response: result });
+        } else {
+            return res.status(400).json({ status: false, error: "All files failed to index." });
+        }
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -159,13 +170,13 @@ async function indexFiles(req, res) {
 //index web scrape
 async function indexWebURLs(req, res) {
     try {
-        const { urls, customerId, pages, depth } = req.body; //validataion
+        const { urls, customerId, pages, depth } = req.body;
 
         if (!urls || !customerId) {
             return res.status(400).json({ error: "Missing required parameters" });
         }
 
-        console.log("Request URLs:", urls); // Log the request URLs to the console
+        // console.log("Request URLs:", urls);
 
         const result = [];
         for (const url of urls) {
@@ -199,7 +210,7 @@ async function indexWebURLs(req, res) {
                     console.error(`Error processing URL: ${url}`, error.response.data);
                 } else {
                     console.error(`Error processing URL: ${url}`, error.message);
-                } // choosing continue, will skip to the next URL
+                }
                 continue;
             }
         } // Save results to the database
@@ -212,7 +223,7 @@ async function indexWebURLs(req, res) {
                 .status(500)
                 .json({ error: "An error occurred while saving data to the database" });
         }
-        return res.json({ status: true, response: result });
+        return res.json({ status: true, message: "Web Url successuly indexed in carbon.", response: result });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -456,6 +467,40 @@ async function indexDataObjByObj(req, res) {
     }
 }
 
+//index data from unilab playground
+async function indexDatafromPlayground(req, res) {
+    try {
+        const { fileType, customerId } = req.body;
+
+        if (!fileType || !customerId) {
+            return res.status(400).json({ message: "Missing required parameters" });
+        }
+
+        const allowedCustomerIDs = constants.ALLOWED_CUSTOMER_IDS ? constants.ALLOWED_CUSTOMER_IDS.split(",") : [];
+        // console.log(allowedCustomerIDs);
+
+        if (!allowedCustomerIDs.includes(customerId)) {
+            return res.status(400).json({ status: false, message: "Invalid customer ID" });
+        }
+
+        switch (fileType) {
+            case "url":
+                // console.log("url executed");
+                return await indexFileViaURLs(req, res);
+            case "file":
+                // console.log("file executed");
+                return await indexFiles(req, res);
+            case "web":
+                // console.log("web executed");
+                return await indexWebURLs(req, res);
+            default:
+                return res.status(400).json({ error: "Unsupported file type" });
+        }
+    } catch (error) {
+        res.status(500).json({ message: "Server error occurred.", error: error.message });
+    }
+}
+
 
 module.exports = {
     indexFileViaURLs,
@@ -464,5 +509,6 @@ module.exports = {
     listURLsAndCarbonIDs,
     indexWebURLs,
     checkReadyIndexedCarbon,
-    indexDataObjByObj
+    indexDataObjByObj,
+    indexDatafromPlayground
 };

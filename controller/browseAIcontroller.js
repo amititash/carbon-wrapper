@@ -1,8 +1,6 @@
 const axios = require('axios');
 const { constants } = require('../config/constants');
 const BrowseModel = require("../models/browseAI");
-const openAIcontroller = require("./openAIcontroller");
-const neo4jController = require("./neo4jController");
 
 
 //fetch all data of robot
@@ -67,119 +65,17 @@ async function fetchTaskofRobotById(req, res) {
             throw new Error(`Request failed with status code ${response.status}`);
         }
 
-        const jobs = response.data.result.capturedLists?.Jobs;
-        const savedJobs = [];
-        let successCountMongo = 0;
-        let failureCountMongo = 0;
-        let successCountNeo4j = 0;
-        let failureCountNeo4j = 0;
-        let totalNodesCreated = 0;
-        let totalRelationshipsCreated = 0;
-        let totalPropertiesSet = 0;
+        // Extracting post links from capturedLists
+        // const jobUrls = response.data.result.capturedLists?.Jobs.map(job => job['Post Link']).filter(url => url);
 
-        // Save each job to db
-        for (const job of jobs) {
-            let domain = null;
-            if (response.data.result.inputParameters && response.data.result.inputParameters.job_title) {
-                domain = response.data.result.inputParameters.job_title;
-            }
+        // return res.json({ status: true, jobUrls: jobUrls });
+        return res.json({ status: true, response: response.data });
 
-            const description = job.Description;
-            const extractedData = await openAIcontroller(description);
-
-            if (extractedData) {
-                const parsedData = JSON.parse(extractedData);
-
-                if (parsedData.graph_params) {
-                    const graphParams = parsedData.graph_params[0];
-                    if (graphParams) {
-                        const { hardskills, tools, softskills, qualifications, salary_range } = graphParams;
-
-                        const newJob = new BrowseModel.BrowseDatas({
-                            position: 'developer',
-                            title: job.Title,
-                            post_link: job['Post Link'],
-                            company: job.Company,
-                            company_profile: job['Company Profile'],
-                            location: job.Location,
-                            actively_status: job['Actively Status'],
-                            description: job.Description,
-                            seniority_level: job['Seniority level'],
-                            employment_type: job['Employment type'],
-                            job_function: job['Job function'],
-                            industries: job.Industries,
-                            time_ago: job['time ago'],
-                            domain: domain,
-                            hardskills: hardskills,
-                            tools: tools,
-                            softskills: softskills,
-                            qualifications: qualifications,
-                            salary_range: salary_range
-                        });
-
-                        try {
-                            await newJob.save();
-                            successCountMongo++;
-                            // savedJobs.push(newJob);
-                        } catch (error) {
-                            console.error("Error saving job to MongoDB:", error);
-                            failureCountMongo++;
-                            continue;
-                        }
-
-                        try {
-                            const neo4j = await neo4jController.createNeo4jGraph(newJob.toJSON());
-                            successCountNeo4j++;
-                            // savedJobs.push({ neo4j });
-
-                            // Aggregate Neo4j update statistics
-                            // console.log("Query Statistics:", neo4j.summary.counters._stats);
-                            const updateStatistics = neo4j.summary.counters._stats;
-                            totalNodesCreated += updateStatistics.nodesCreated;
-                            totalRelationshipsCreated += updateStatistics.relationshipsCreated;
-                            totalPropertiesSet += updateStatistics.propertiesSet;
-                        } catch (error) {
-                            console.error("Error creating Neo4j graph:", error);
-                            failureCountNeo4j++;
-                            continue;
-                        }
-                    } else {
-                        console.error("Graph params is undefined");
-                    }
-                } else {
-                    console.error("parsedData.graph_params is undefined");
-                }
-            } else {
-                console.error("Extracted data is undefined");
-            }
-        }
-
-        console.log("Job Nodes created & Jobs saved successfully to the database");
-        return res.json({
-            status: true,
-            message: "Job Nodes created & Jobs saved successfully to the database",
-            // savedJobs,
-            mongoStats: {
-                successCount: successCountMongo,
-                failureCount: failureCountMongo
-            },
-            neo4jStats: {
-                successCount: successCountNeo4j,
-                failureCount: failureCountNeo4j,
-                totalNodesCreated,
-                totalRelationshipsCreated,
-                totalPropertiesSet
-            }
-        });
     } catch (error) {
-        console.error("Error while fetching browser AI task data:", error);
-        return res.status(500).json({ error: 'Internal server error', message: error.message });
+        // console.error("Error while fetching browser AI task data:", error);
+        return res.status(500).json({ error: 'Internal server error' });
     }
 }
-
-
-
-
 
 
 async function fetchDataOnbasisOfFields(req, res) {
