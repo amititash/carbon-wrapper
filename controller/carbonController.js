@@ -21,7 +21,7 @@ async function indexFileViaURLs(req, res) {
                     `${constants.carbonApiUrl}/upload_file_from_url`,
                     {
                         url: url,
-                        "chunk_size": 8000
+                        "chunk_size": 2048
                     },
                     {
                         headers: {
@@ -126,7 +126,7 @@ async function indexFiles(req, res) {
             formData.append("file", file.buffer, { filename: file.originalname });
 
             const response = await axios.post(
-                `${constants.carbonApiUrl}/uploadfile?chunk_size=8000`,
+                `${constants.carbonApiUrl}/uploadfile?chunk_size=2048`,
                 formData,
                 {
                     headers: {
@@ -186,7 +186,7 @@ async function indexWebURLs(req, res) {
                     [
                         {
                             url: url,
-                            "chunk_size": 8000,
+                            "chunk_size": 2048,
                             "max_pages_to_scrape": pages,
                             "recursion_depth": depth,
                         },
