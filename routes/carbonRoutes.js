@@ -15,7 +15,7 @@ router.post('/indexWebUrls', carbonController.indexWebURLs);
 router.post('/resyncFileStatus', carbonController.resyncIndexedCarbonStatus);
 router.get('/listAllurlId', carbonController.listURLsAndCarbonIDs);
 router.post('/checkReadyIndexedCarbon', carbonController.checkReadyIndexedCarbon);
-
+router.post('/deleteFiles', carbonController.deleteFiles);
 router.post('/indexDataObjByObj', upload.single('file'), carbonController.indexDataObjByObj);
 
 router.post('/indexDatafromPlayground', upload.array('files'), carbonController.indexDatafromPlayground);

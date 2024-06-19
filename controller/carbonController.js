@@ -501,6 +501,73 @@ async function indexDatafromPlayground(req, res) {
     }
 }
 
+async function deleteFiles(req, res) {
+    try {
+        const { customerId, fileIds } = req.body;
+
+        if (!fileIds || !customerId) {
+            return res.status(400).json({ error: "Missing required parameters" });
+        }
+
+        const body = {
+            "filters": {
+                "ids": fileIds,
+            }
+        };
+
+        const response = await axios.post(`https://api.carbon.ai/delete_files_v2`, body, {
+            headers: {
+                Authorization: `Bearer ${constants.carbonApiKey}`,
+                'Content-Type': 'application/json',
+                "customer-id": customerId,
+            }
+        });
+
+        console.log("carbon rrsponse :: ", response.data);
+        if (response.data.success) {
+            // console.log('Deleting from MongoDB with parameters:', {
+            //     customer_id: customerId,
+            //     'carbon.id': { $in: fileIds }
+            // });
+
+            try {
+                const deleteResult = await CarbonModel.CarbonDatas.deleteMany({
+                    customer_id: customerId,
+                    'carbon.id': { $in: fileIds },
+                });
+
+                // Log the result of the deletion
+                console.log('MongoDB delete result:', deleteResult);
+
+                if (deleteResult.deletedCount > 0) {
+                    return res.json({ status: true, message: "Files successfully deleted from Carbon and database." });
+                } else {
+                    console.error("No matching documents found in MongoDB for deletion.");
+                    return res.status(404).json({ status: false, error: "No matching documents found in database." });
+                }
+            } catch (error) {
+                console.error("Error deleting data from database:", error.message);
+                return res.status(500).json({ error: "An error occurred while deleting data from the database" });
+            }
+        } else {
+            console.error("Failed to delete files from Carbon:", response.data);
+            return res.status(400).json({ status: false, error: "Failed to delete files from Carbon.", details: response.data });
+        }
+    } catch (error) {
+        if (error.response) {
+            console.error(`Request failed with status code ${error.response.status}`);
+            console.error("Error response data:", error.response.data);
+        } else if (error.request) {
+            console.error("No response received:", error.request);
+        } else {
+            console.error('Error setting up request:', error.message);
+        }
+        console.error("Request config:", error.config);
+        return res.status(500).json({ error: "Failed to delete files: server error" });
+    }
+}
+
+
 
 module.exports = {
     indexFileViaURLs,
@@ -510,5 +577,6 @@ module.exports = {
     indexWebURLs,
     checkReadyIndexedCarbon,
     indexDataObjByObj,
-    indexDatafromPlayground
+    indexDatafromPlayground,
+    deleteFiles
 };

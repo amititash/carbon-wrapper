@@ -4,7 +4,7 @@
             "_postman_id": "cb2d59e7-75a7-441f-9d3d-28429593fd71",
             "name": "CARBON  & BROWSE AI",
             "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-            "updatedAt": "2024-04-16T13:02:31.000Z",
+            "updatedAt": "2024-05-14T13:03:57.000Z",
             "uid": "34274153-cb2d59e7-75a7-441f-9d3d-28429593fd71",
             "createdAt": null,
             "lastUpdatedBy": null
@@ -71,11 +71,15 @@
                                 }
                             },
                             "url": {
-                                "raw": "localhost:3100/browse/fetchRobotTaskById?robotId=fc31a8e1-ede2-460f-b3c2-e23e4302f9c9&taskId=4ae7729e-1852-4259-b5b5-d7aff3cd1218",
+                                "raw": "http://35.183.170.174:3200/browse/fetchRobotTaskById?robotId=76dbc103-8c80-4bb7-b448-16ed940fde05&taskId=a6053aee-b697-4e8e-8800-beb1e99bad4d",
+                                "protocol": "http",
                                 "host": [
-                                    "localhost"
+                                    "35",
+                                    "183",
+                                    "170",
+                                    "174"
                                 ],
-                                "port": "3100",
+                                "port": "3200",
                                 "path": [
                                     "browse",
                                     "fetchRobotTaskById"
@@ -83,11 +87,11 @@
                                 "query": [
                                     {
                                         "key": "robotId",
-                                        "value": "fc31a8e1-ede2-460f-b3c2-e23e4302f9c9"
+                                        "value": "76dbc103-8c80-4bb7-b448-16ed940fde05"
                                     },
                                     {
                                         "key": "taskId",
-                                        "value": "4ae7729e-1852-4259-b5b5-d7aff3cd1218"
+                                        "value": "a6053aee-b697-4e8e-8800-beb1e99bad4d"
                                     }
                                 ]
                             }
@@ -114,7 +118,7 @@
                                 }
                             },
                             "url": {
-                                "raw": "localhost:3100/browse/fetchDataFromDb?userQuery=chatGPT",
+                                "raw": "localhost:3100/browse/fetchDataFromDb?userQuery=Program Manager",
                                 "host": [
                                     "localhost"
                                 ],
@@ -126,7 +130,7 @@
                                 "query": [
                                     {
                                         "key": "userQuery",
-                                        "value": "chatGPT"
+                                        "value": "Program Manager"
                                     }
                                 ]
                             }
@@ -153,7 +157,7 @@
                                 }
                             },
                             "url": {
-                                "raw": "localhost:3100/browse/fetchResultsWithFilters?title=ai&seniority_level=Entry",
+                                "raw": "localhost:3100/browse/fetchResultsWithFilters?hardskills=Julia",
                                 "host": [
                                     "localhost"
                                 ],
@@ -164,14 +168,8 @@
                                 ],
                                 "query": [
                                     {
-                                        "key": "title",
-                                        "value": "ai",
-                                        "type": "text"
-                                    },
-                                    {
-                                        "key": "seniority_level",
-                                        "value": "Entry",
-                                        "type": "text"
+                                        "key": "hardskills",
+                                        "value": "Julia"
                                     }
                                 ]
                             }
@@ -334,23 +332,23 @@
                                         "type": "file",
                                         "fileNotInWorkingDirectoryWarning": "This file isn't in your working directory. Teammates you share this request with won't be able to use this file. To make collaboration easier you can setup your working directory in Settings.",
                                         "filesNotInWorkingDirectory": [
-                                            "/Users/dev/Downloads/extract-job-listings-information-from-linkedin_jobs_captured-list_2024-04-29_59a440f0-eb2e-4b43-ac22-a0a0baa684f4.json"
+                                            "/Users/dev/Downloads/flow.pdf"
                                         ],
-                                        "src": "/Users/dev/Downloads/extract-job-listings-information-from-linkedin_jobs_captured-list_2024-04-29_59a440f0-eb2e-4b43-ac22-a0a0baa684f4.json"
+                                        "src": "/Users/dev/Downloads/flow.pdf"
                                     },
                                     {
                                         "key": "customerId",
-                                        "value": "rbr-test1",
+                                        "value": "alpha-play",
                                         "type": "text"
                                     }
                                 ]
                             },
                             "url": {
-                                "raw": "localhost:3100/carbon/indexFiles",
+                                "raw": "localhost:3200/carbon/indexFiles",
                                 "host": [
                                     "localhost"
                                 ],
-                                "port": "3100",
+                                "port": "3200",
                                 "path": [
                                     "carbon",
                                     "indexFiles"
@@ -403,6 +401,546 @@
                         },
                         "response": [],
                         "uid": "34274153-76d3ba02-3dfb-43b1-bee6-cba0c83c4747"
+                    },
+                    {
+                        "name": "Upload file |  Playground",
+                        "id": "78df4e65-3f3a-416d-b9ab-cee408cbee85",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [],
+                            "body": {
+                                "mode": "formdata",
+                                "formdata": [
+                                    {
+                                        "key": "file",
+                                        "type": "file",
+                                        "fileNotInWorkingDirectoryWarning": "This file isn't in your working directory. Teammates you share this request with won't be able to use this file. To make collaboration easier you can setup your working directory in Settings.",
+                                        "filesNotInWorkingDirectory": [
+                                            "/Users/dev/Downloads/extract-job-listings-information-from-linkedin_jobs_captured-list_2024-04-29_59a440f0-eb2e-4b43-ac22-a0a0baa684f4.json"
+                                        ],
+                                        "src": "/Users/dev/Downloads/extract-job-listings-information-from-linkedin_jobs_captured-list_2024-04-29_59a440f0-eb2e-4b43-ac22-a0a0baa684f4.json"
+                                    },
+                                    {
+                                        "key": "customerId",
+                                        "value": "jsonDBT5",
+                                        "type": "text"
+                                    }
+                                ]
+                            },
+                            "url": {
+                                "raw": "http://localhost:3100/carbon/indexDataObjByObj",
+                                "protocol": "http",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "3100",
+                                "path": [
+                                    "carbon",
+                                    "indexDataObjByObj"
+                                ]
+                            }
+                        },
+                        "response": [
+                            {
+                                "id": "6f1ac3b6-b4d7-4d13-b663-9b3c17728aad",
+                                "name": "web scrap index",
+                                "originalRequest": {
+                                    "method": "POST",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n    \"fileType\":\"web\",\n    \"urls\": [\n        \"https://drive.google.com/drive/u/1/folders/1Pj9cKSu0VxU_6YyJQfNhHNilwgd6BZpE\"\n    ],\n    \"customerId\": \"alpha-play\",\n    \"pages\": 1,\n    \"depth\": 1\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:3100/carbon/indexDatafromPlayground",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "3100",
+                                        "path": [
+                                            "carbon",
+                                            "indexDatafromPlayground"
+                                        ]
+                                    }
+                                },
+                                "status": "OK",
+                                "code": 200,
+                                "_postman_previewlanguage": "json",
+                                "header": [
+                                    {
+                                        "key": "X-Powered-By",
+                                        "value": "Express"
+                                    },
+                                    {
+                                        "key": "Access-Control-Allow-Origin",
+                                        "value": "*"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json; charset=utf-8"
+                                    },
+                                    {
+                                        "key": "Content-Length",
+                                        "value": "1523"
+                                    },
+                                    {
+                                        "key": "ETag",
+                                        "value": "W/\"5f3-rq1kOWnJA1DOT5EKmX/v/NZLPpw\""
+                                    },
+                                    {
+                                        "key": "Date",
+                                        "value": "Wed, 15 May 2024 09:53:44 GMT"
+                                    },
+                                    {
+                                        "key": "Connection",
+                                        "value": "keep-alive"
+                                    },
+                                    {
+                                        "key": "Keep-Alive",
+                                        "value": "timeout=5"
+                                    }
+                                ],
+                                "cookie": [],
+                                "responseTime": null,
+                                "body": "{\n    \"status\": true,\n    \"response\": [\n        {\n            \"url\": \"https://drive.google.com/drive/u/1/folders/1Pj9cKSu0VxU_6YyJQfNhHNilwgd6BZpE\",\n            \"customer_id\": \"alpha-play\",\n            \"carbon\": [\n                {\n                    \"deleted_at\": null,\n                    \"skip_embedding_generation\": false,\n                    \"container_sync_id\": null,\n                    \"sync_status\": \"DELAYED\",\n                    \"request_id\": null,\n                    \"source_created_at\": null,\n                    \"tags\": {},\n                    \"sync_error_message\": null,\n                    \"created_at\": \"2024-05-15T09:53:47.824613+00:00\",\n                    \"chunk_overlap\": 20,\n                    \"last_sync\": null,\n                    \"ocr_job_id\": null,\n                    \"organization_supplied_user_id\": \"alpha-play\",\n                    \"organization_user_data_source_id\": null,\n                    \"ocr_properties\": {},\n                    \"chunk_properties\": {\n                        \"prepend_filename_to_chunks\": false\n                    },\n                    \"file_statistics\": null,\n                    \"parent_id\": null,\n                    \"external_file_id\": \"HxC11As27t6XQwnanQdakggEkqlMuoMS\",\n                    \"organization_id\": 1242,\n                    \"file_metadata\": {\n                        \"scraping_type\": \"WEB_SCRAPE\",\n                        \"recursion_depth\": 1,\n                        \"html_tags_to_skip\": [],\n                        \"css_classes_to_skip\": [],\n                        \"max_pages_to_scrape\": 1,\n                        \"css_selectors_to_skip\": []\n                    },\n                    \"ocr_metadata\": {},\n                    \"source\": \"WEB_SCRAPE\",\n                    \"generate_sparse_vectors\": false,\n                    \"enable_auto_sync\": false,\n                    \"embedding_properties\": {\n                        \"OPENAI\": {\n                            \"chunk_size\": 8000,\n                            \"chunk_overlap\": 20\n                        }\n                    },\n                    \"external_url\": \"https://drive.google.com/drive/u/1/folders/1Pj9cKSu0VxU_6YyJQfNhHNilwgd6BZpE\",\n                    \"chunk_size\": 8000,\n                    \"ocr_job_started_at\": null,\n                    \"saved_filename\": \"HxC11As27t6XQwnanQdakggEkqlMuoMS.web_scrape\",\n                    \"sparse_vectors_generated_at\": null,\n                    \"name\": \"https://drive.google.com/drive/u/1/folders/1Pj9cKSu0VxU_6YyJQfNhHNilwgd6BZpE\",\n                    \"id\": 6592802,\n                    \"ocr_saved_analysis_filenames\": null,\n                    \"sync_error_reason\": null,\n                    \"parsed_text_filename\": null,\n                    \"updated_at\": \"2024-05-15T09:53:47.824613+00:00\"\n                }\n            ]\n        }\n    ]\n}",
+                                "uid": "34274153-6f1ac3b6-b4d7-4d13-b663-9b3c17728aad"
+                            },
+                            {
+                                "id": "e0e44edf-d205-4f47-9ace-715f4d98a879",
+                                "name": "url file indexing",
+                                "originalRequest": {
+                                    "method": "POST",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n    \"fileType\":\"url\",\n    \"urls\": [\n        \"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg\"\n    ],\n    \"customerId\": \"beta-play\",\n    \"pages\": 1,\n    \"depth\": 1\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:3100/carbon/indexDatafromPlayground",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "3100",
+                                        "path": [
+                                            "carbon",
+                                            "indexDatafromPlayground"
+                                        ]
+                                    }
+                                },
+                                "status": "OK",
+                                "code": 200,
+                                "_postman_previewlanguage": "json",
+                                "header": [
+                                    {
+                                        "key": "X-Powered-By",
+                                        "value": "Express"
+                                    },
+                                    {
+                                        "key": "Access-Control-Allow-Origin",
+                                        "value": "*"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json; charset=utf-8"
+                                    },
+                                    {
+                                        "key": "Content-Length",
+                                        "value": "1235"
+                                    },
+                                    {
+                                        "key": "ETag",
+                                        "value": "W/\"4d3-x1bQA+HY2LGmZksIKvJf880sFV8\""
+                                    },
+                                    {
+                                        "key": "Date",
+                                        "value": "Wed, 15 May 2024 09:57:54 GMT"
+                                    },
+                                    {
+                                        "key": "Connection",
+                                        "value": "keep-alive"
+                                    },
+                                    {
+                                        "key": "Keep-Alive",
+                                        "value": "timeout=5"
+                                    }
+                                ],
+                                "cookie": [],
+                                "responseTime": null,
+                                "body": "{\n    \"status\": true,\n    \"response\": [\n        {\n            \"url\": \"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg\",\n            \"customer_id\": \"beta-play\",\n            \"carbon\": {\n                \"id\": 6592956,\n                \"source\": \"JPG\",\n                \"organization_id\": 1242,\n                \"organization_supplied_user_id\": \"beta-play\",\n                \"organization_user_data_source_id\": null,\n                \"external_file_id\": \"deiOVYW9OuelAkTXCy2yCubMhkQ9XkjX\",\n                \"external_url\": null,\n                \"sync_status\": \"QUEUED_FOR_SYNC\",\n                \"sync_error_message\": null,\n                \"last_sync\": null,\n                \"tags\": null,\n                \"file_statistics\": {\n                    \"file_format\": \"JPG\",\n                    \"file_size\": 1779800,\n                    \"num_characters\": null,\n                    \"num_tokens\": null,\n                    \"num_embeddings\": null,\n                    \"mime_type\": \"image/jpeg\"\n                },\n                \"file_metadata\": null,\n                \"embedding_properties\": {\n                    \"VERTEX_MULTIMODAL\": {\n                        \"chunk_size\": null,\n                        \"chunk_overlap\": null\n                    }\n                },\n                \"chunk_size\": null,\n                \"chunk_overlap\": null,\n                \"chunk_properties\": {\n                    \"set_page_as_boundary\": false,\n                    \"prepend_filename_to_chunks\": false,\n                    \"max_items_per_chunk\": null\n                },\n                \"ocr_properties\": {},\n                \"ocr_job_started_at\": null,\n                \"name\": \"pexels-photo-106399.jpeg\",\n                \"parent_id\": null,\n                \"enable_auto_sync\": false,\n                \"presigned_url\": null,\n                \"parsed_text_url\": null,\n                \"additional_presigned_urls\": null,\n                \"skip_embedding_generation\": false,\n                \"source_created_at\": null,\n                \"generate_sparse_vectors\": false,\n                \"request_id\": null,\n                \"created_at\": \"2024-05-15T09:57:57.122522Z\",\n                \"updated_at\": \"2024-05-15T09:57:57.122522Z\"\n            }\n        }\n    ]\n}",
+                                "uid": "34274153-e0e44edf-d205-4f47-9ace-715f4d98a879"
+                            },
+                            {
+                                "id": "aee687b6-a231-4702-b125-b13588fe0392",
+                                "name": "file index",
+                                "originalRequest": {
+                                    "method": "POST",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "formdata",
+                                        "formdata": [
+                                            {
+                                                "key": "files",
+                                                "type": "file",
+                                                "fileNotInWorkingDirectoryWarning": "This file isn't in your working directory. Teammates you share this request with won't be able to use this file. To make collaboration easier you can setup your working directory in Settings.",
+                                                "filesNotInWorkingDirectory": [
+                                                    "/Users/dev/Downloads/DemoData.csv"
+                                                ],
+                                                "src": "/Users/dev/Downloads/DemoData.csv"
+                                            },
+                                            {
+                                                "key": "fileType",
+                                                "value": "file",
+                                                "type": "text"
+                                            },
+                                            {
+                                                "key": "customerId",
+                                                "value": "beta-play",
+                                                "type": "text"
+                                            }
+                                        ],
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:3100/carbon/indexDatafromPlayground",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "3100",
+                                        "path": [
+                                            "carbon",
+                                            "indexDatafromPlayground"
+                                        ]
+                                    }
+                                },
+                                "status": "OK",
+                                "code": 200,
+                                "_postman_previewlanguage": "json",
+                                "header": [
+                                    {
+                                        "key": "X-Powered-By",
+                                        "value": "Express"
+                                    },
+                                    {
+                                        "key": "Access-Control-Allow-Origin",
+                                        "value": "*"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json; charset=utf-8"
+                                    },
+                                    {
+                                        "key": "Content-Length",
+                                        "value": "1161"
+                                    },
+                                    {
+                                        "key": "ETag",
+                                        "value": "W/\"489-CdEk58g9PG8MO5zK8GWDkShdADw\""
+                                    },
+                                    {
+                                        "key": "Date",
+                                        "value": "Wed, 15 May 2024 10:09:13 GMT"
+                                    },
+                                    {
+                                        "key": "Connection",
+                                        "value": "keep-alive"
+                                    },
+                                    {
+                                        "key": "Keep-Alive",
+                                        "value": "timeout=5"
+                                    }
+                                ],
+                                "cookie": [],
+                                "responseTime": null,
+                                "body": "{\n    \"status\": true,\n    \"response\": [\n        {\n            \"filename\": \"DemoData.csv\",\n            \"customer_id\": \"beta-play\",\n            \"carbon\": {\n                \"id\": 6593384,\n                \"source\": \"CSV\",\n                \"organization_id\": 1242,\n                \"organization_supplied_user_id\": \"beta-play\",\n                \"organization_user_data_source_id\": null,\n                \"external_file_id\": \"XJp8xrLepwMDwB3vpk2RlYgawuNhYFPi\",\n                \"external_url\": null,\n                \"sync_status\": \"QUEUED_FOR_SYNC\",\n                \"sync_error_message\": null,\n                \"last_sync\": null,\n                \"tags\": null,\n                \"file_statistics\": {\n                    \"file_format\": \"CSV\",\n                    \"file_size\": 26210,\n                    \"num_characters\": null,\n                    \"num_tokens\": null,\n                    \"num_embeddings\": null,\n                    \"mime_type\": \"text/csv\"\n                },\n                \"file_metadata\": null,\n                \"embedding_properties\": {\n                    \"OPENAI\": {\n                        \"chunk_size\": 8000,\n                        \"chunk_overlap\": null\n                    }\n                },\n                \"chunk_size\": 8000,\n                \"chunk_overlap\": null,\n                \"chunk_properties\": {\n                    \"set_page_as_boundary\": false,\n                    \"prepend_filename_to_chunks\": false,\n                    \"max_items_per_chunk\": null\n                },\n                \"ocr_properties\": {},\n                \"ocr_job_started_at\": null,\n                \"name\": \"DemoData.csv\",\n                \"parent_id\": null,\n                \"enable_auto_sync\": false,\n                \"presigned_url\": null,\n                \"parsed_text_url\": null,\n                \"additional_presigned_urls\": null,\n                \"skip_embedding_generation\": false,\n                \"source_created_at\": null,\n                \"generate_sparse_vectors\": false,\n                \"request_id\": null,\n                \"created_at\": \"2024-05-15T10:09:16.228744Z\",\n                \"updated_at\": \"2024-05-15T10:09:16.228744Z\"\n            }\n        }\n    ]\n}",
+                                "uid": "34274153-aee687b6-a231-4702-b125-b13588fe0392"
+                            }
+                        ],
+                        "uid": "34274153-78df4e65-3f3a-416d-b9ab-cee408cbee85"
+                    },
+                    {
+                        "name": "Delete Carbon File",
+                        "id": "16be30fc-0e10-4615-bc2d-6fe7a75b7d96",
+                        "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                        },
+                        "request": {
+                            "method": "POST",
+                            "header": [],
+                            "body": {
+                                "mode": "raw",
+                                "raw": "{\n    \"customerId\": \"unilabai-kb\",\n    \"fileIds\": [7797870, 7797940]\n}\n",
+                                "options": {
+                                    "raw": {
+                                        "language": "json"
+                                    }
+                                }
+                            },
+                            "url": {
+                                "raw": "http://localhost:3200/carbon/deleteFiles",
+                                "protocol": "http",
+                                "host": [
+                                    "localhost"
+                                ],
+                                "port": "3200",
+                                "path": [
+                                    "carbon",
+                                    "deleteFiles"
+                                ]
+                            }
+                        },
+                        "response": [
+                            {
+                                "id": "c1d483b4-beeb-406f-b258-37b03e1a8121",
+                                "name": "web scrap index",
+                                "originalRequest": {
+                                    "method": "POST",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n    \"fileType\":\"web\",\n    \"urls\": [\n        \"https://drive.google.com/drive/u/1/folders/1Pj9cKSu0VxU_6YyJQfNhHNilwgd6BZpE\"\n    ],\n    \"customerId\": \"alpha-play\",\n    \"pages\": 1,\n    \"depth\": 1\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:3100/carbon/indexDatafromPlayground",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "3100",
+                                        "path": [
+                                            "carbon",
+                                            "indexDatafromPlayground"
+                                        ]
+                                    }
+                                },
+                                "status": "OK",
+                                "code": 200,
+                                "_postman_previewlanguage": "json",
+                                "header": [
+                                    {
+                                        "key": "X-Powered-By",
+                                        "value": "Express"
+                                    },
+                                    {
+                                        "key": "Access-Control-Allow-Origin",
+                                        "value": "*"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json; charset=utf-8"
+                                    },
+                                    {
+                                        "key": "Content-Length",
+                                        "value": "1523"
+                                    },
+                                    {
+                                        "key": "ETag",
+                                        "value": "W/\"5f3-rq1kOWnJA1DOT5EKmX/v/NZLPpw\""
+                                    },
+                                    {
+                                        "key": "Date",
+                                        "value": "Wed, 15 May 2024 09:53:44 GMT"
+                                    },
+                                    {
+                                        "key": "Connection",
+                                        "value": "keep-alive"
+                                    },
+                                    {
+                                        "key": "Keep-Alive",
+                                        "value": "timeout=5"
+                                    }
+                                ],
+                                "cookie": [],
+                                "responseTime": null,
+                                "body": "{\n    \"status\": true,\n    \"response\": [\n        {\n            \"url\": \"https://drive.google.com/drive/u/1/folders/1Pj9cKSu0VxU_6YyJQfNhHNilwgd6BZpE\",\n            \"customer_id\": \"alpha-play\",\n            \"carbon\": [\n                {\n                    \"deleted_at\": null,\n                    \"skip_embedding_generation\": false,\n                    \"container_sync_id\": null,\n                    \"sync_status\": \"DELAYED\",\n                    \"request_id\": null,\n                    \"source_created_at\": null,\n                    \"tags\": {},\n                    \"sync_error_message\": null,\n                    \"created_at\": \"2024-05-15T09:53:47.824613+00:00\",\n                    \"chunk_overlap\": 20,\n                    \"last_sync\": null,\n                    \"ocr_job_id\": null,\n                    \"organization_supplied_user_id\": \"alpha-play\",\n                    \"organization_user_data_source_id\": null,\n                    \"ocr_properties\": {},\n                    \"chunk_properties\": {\n                        \"prepend_filename_to_chunks\": false\n                    },\n                    \"file_statistics\": null,\n                    \"parent_id\": null,\n                    \"external_file_id\": \"HxC11As27t6XQwnanQdakggEkqlMuoMS\",\n                    \"organization_id\": 1242,\n                    \"file_metadata\": {\n                        \"scraping_type\": \"WEB_SCRAPE\",\n                        \"recursion_depth\": 1,\n                        \"html_tags_to_skip\": [],\n                        \"css_classes_to_skip\": [],\n                        \"max_pages_to_scrape\": 1,\n                        \"css_selectors_to_skip\": []\n                    },\n                    \"ocr_metadata\": {},\n                    \"source\": \"WEB_SCRAPE\",\n                    \"generate_sparse_vectors\": false,\n                    \"enable_auto_sync\": false,\n                    \"embedding_properties\": {\n                        \"OPENAI\": {\n                            \"chunk_size\": 8000,\n                            \"chunk_overlap\": 20\n                        }\n                    },\n                    \"external_url\": \"https://drive.google.com/drive/u/1/folders/1Pj9cKSu0VxU_6YyJQfNhHNilwgd6BZpE\",\n                    \"chunk_size\": 8000,\n                    \"ocr_job_started_at\": null,\n                    \"saved_filename\": \"HxC11As27t6XQwnanQdakggEkqlMuoMS.web_scrape\",\n                    \"sparse_vectors_generated_at\": null,\n                    \"name\": \"https://drive.google.com/drive/u/1/folders/1Pj9cKSu0VxU_6YyJQfNhHNilwgd6BZpE\",\n                    \"id\": 6592802,\n                    \"ocr_saved_analysis_filenames\": null,\n                    \"sync_error_reason\": null,\n                    \"parsed_text_filename\": null,\n                    \"updated_at\": \"2024-05-15T09:53:47.824613+00:00\"\n                }\n            ]\n        }\n    ]\n}",
+                                "uid": "34274153-c1d483b4-beeb-406f-b258-37b03e1a8121"
+                            },
+                            {
+                                "id": "bae2cc75-4fde-4bf8-b8e7-3c626b88ead1",
+                                "name": "url file indexing",
+                                "originalRequest": {
+                                    "method": "POST",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n    \"fileType\":\"url\",\n    \"urls\": [\n        \"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg\"\n    ],\n    \"customerId\": \"beta-play\",\n    \"pages\": 1,\n    \"depth\": 1\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:3100/carbon/indexDatafromPlayground",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "3100",
+                                        "path": [
+                                            "carbon",
+                                            "indexDatafromPlayground"
+                                        ]
+                                    }
+                                },
+                                "status": "OK",
+                                "code": 200,
+                                "_postman_previewlanguage": "json",
+                                "header": [
+                                    {
+                                        "key": "X-Powered-By",
+                                        "value": "Express"
+                                    },
+                                    {
+                                        "key": "Access-Control-Allow-Origin",
+                                        "value": "*"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json; charset=utf-8"
+                                    },
+                                    {
+                                        "key": "Content-Length",
+                                        "value": "1235"
+                                    },
+                                    {
+                                        "key": "ETag",
+                                        "value": "W/\"4d3-x1bQA+HY2LGmZksIKvJf880sFV8\""
+                                    },
+                                    {
+                                        "key": "Date",
+                                        "value": "Wed, 15 May 2024 09:57:54 GMT"
+                                    },
+                                    {
+                                        "key": "Connection",
+                                        "value": "keep-alive"
+                                    },
+                                    {
+                                        "key": "Keep-Alive",
+                                        "value": "timeout=5"
+                                    }
+                                ],
+                                "cookie": [],
+                                "responseTime": null,
+                                "body": "{\n    \"status\": true,\n    \"response\": [\n        {\n            \"url\": \"https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg\",\n            \"customer_id\": \"beta-play\",\n            \"carbon\": {\n                \"id\": 6592956,\n                \"source\": \"JPG\",\n                \"organization_id\": 1242,\n                \"organization_supplied_user_id\": \"beta-play\",\n                \"organization_user_data_source_id\": null,\n                \"external_file_id\": \"deiOVYW9OuelAkTXCy2yCubMhkQ9XkjX\",\n                \"external_url\": null,\n                \"sync_status\": \"QUEUED_FOR_SYNC\",\n                \"sync_error_message\": null,\n                \"last_sync\": null,\n                \"tags\": null,\n                \"file_statistics\": {\n                    \"file_format\": \"JPG\",\n                    \"file_size\": 1779800,\n                    \"num_characters\": null,\n                    \"num_tokens\": null,\n                    \"num_embeddings\": null,\n                    \"mime_type\": \"image/jpeg\"\n                },\n                \"file_metadata\": null,\n                \"embedding_properties\": {\n                    \"VERTEX_MULTIMODAL\": {\n                        \"chunk_size\": null,\n                        \"chunk_overlap\": null\n                    }\n                },\n                \"chunk_size\": null,\n                \"chunk_overlap\": null,\n                \"chunk_properties\": {\n                    \"set_page_as_boundary\": false,\n                    \"prepend_filename_to_chunks\": false,\n                    \"max_items_per_chunk\": null\n                },\n                \"ocr_properties\": {},\n                \"ocr_job_started_at\": null,\n                \"name\": \"pexels-photo-106399.jpeg\",\n                \"parent_id\": null,\n                \"enable_auto_sync\": false,\n                \"presigned_url\": null,\n                \"parsed_text_url\": null,\n                \"additional_presigned_urls\": null,\n                \"skip_embedding_generation\": false,\n                \"source_created_at\": null,\n                \"generate_sparse_vectors\": false,\n                \"request_id\": null,\n                \"created_at\": \"2024-05-15T09:57:57.122522Z\",\n                \"updated_at\": \"2024-05-15T09:57:57.122522Z\"\n            }\n        }\n    ]\n}",
+                                "uid": "34274153-bae2cc75-4fde-4bf8-b8e7-3c626b88ead1"
+                            },
+                            {
+                                "id": "dfb0e69d-d1b5-4757-bf30-cfc4dab81e8c",
+                                "name": "file index",
+                                "originalRequest": {
+                                    "method": "POST",
+                                    "header": [],
+                                    "body": {
+                                        "mode": "formdata",
+                                        "formdata": [
+                                            {
+                                                "key": "files",
+                                                "type": "file",
+                                                "fileNotInWorkingDirectoryWarning": "This file isn't in your working directory. Teammates you share this request with won't be able to use this file. To make collaboration easier you can setup your working directory in Settings.",
+                                                "filesNotInWorkingDirectory": [
+                                                    "/Users/dev/Downloads/DemoData.csv"
+                                                ],
+                                                "src": "/Users/dev/Downloads/DemoData.csv"
+                                            },
+                                            {
+                                                "key": "fileType",
+                                                "value": "file",
+                                                "type": "text"
+                                            },
+                                            {
+                                                "key": "customerId",
+                                                "value": "beta-play",
+                                                "type": "text"
+                                            }
+                                        ],
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "http://localhost:3100/carbon/indexDatafromPlayground",
+                                        "protocol": "http",
+                                        "host": [
+                                            "localhost"
+                                        ],
+                                        "port": "3100",
+                                        "path": [
+                                            "carbon",
+                                            "indexDatafromPlayground"
+                                        ]
+                                    }
+                                },
+                                "status": "OK",
+                                "code": 200,
+                                "_postman_previewlanguage": "json",
+                                "header": [
+                                    {
+                                        "key": "X-Powered-By",
+                                        "value": "Express"
+                                    },
+                                    {
+                                        "key": "Access-Control-Allow-Origin",
+                                        "value": "*"
+                                    },
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json; charset=utf-8"
+                                    },
+                                    {
+                                        "key": "Content-Length",
+                                        "value": "1161"
+                                    },
+                                    {
+                                        "key": "ETag",
+                                        "value": "W/\"489-CdEk58g9PG8MO5zK8GWDkShdADw\""
+                                    },
+                                    {
+                                        "key": "Date",
+                                        "value": "Wed, 15 May 2024 10:09:13 GMT"
+                                    },
+                                    {
+                                        "key": "Connection",
+                                        "value": "keep-alive"
+                                    },
+                                    {
+                                        "key": "Keep-Alive",
+                                        "value": "timeout=5"
+                                    }
+                                ],
+                                "cookie": [],
+                                "responseTime": null,
+                                "body": "{\n    \"status\": true,\n    \"response\": [\n        {\n            \"filename\": \"DemoData.csv\",\n            \"customer_id\": \"beta-play\",\n            \"carbon\": {\n                \"id\": 6593384,\n                \"source\": \"CSV\",\n                \"organization_id\": 1242,\n                \"organization_supplied_user_id\": \"beta-play\",\n                \"organization_user_data_source_id\": null,\n                \"external_file_id\": \"XJp8xrLepwMDwB3vpk2RlYgawuNhYFPi\",\n                \"external_url\": null,\n                \"sync_status\": \"QUEUED_FOR_SYNC\",\n                \"sync_error_message\": null,\n                \"last_sync\": null,\n                \"tags\": null,\n                \"file_statistics\": {\n                    \"file_format\": \"CSV\",\n                    \"file_size\": 26210,\n                    \"num_characters\": null,\n                    \"num_tokens\": null,\n                    \"num_embeddings\": null,\n                    \"mime_type\": \"text/csv\"\n                },\n                \"file_metadata\": null,\n                \"embedding_properties\": {\n                    \"OPENAI\": {\n                        \"chunk_size\": 8000,\n                        \"chunk_overlap\": null\n                    }\n                },\n                \"chunk_size\": 8000,\n                \"chunk_overlap\": null,\n                \"chunk_properties\": {\n                    \"set_page_as_boundary\": false,\n                    \"prepend_filename_to_chunks\": false,\n                    \"max_items_per_chunk\": null\n                },\n                \"ocr_properties\": {},\n                \"ocr_job_started_at\": null,\n                \"name\": \"DemoData.csv\",\n                \"parent_id\": null,\n                \"enable_auto_sync\": false,\n                \"presigned_url\": null,\n                \"parsed_text_url\": null,\n                \"additional_presigned_urls\": null,\n                \"skip_embedding_generation\": false,\n                \"source_created_at\": null,\n                \"generate_sparse_vectors\": false,\n                \"request_id\": null,\n                \"created_at\": \"2024-05-15T10:09:16.228744Z\",\n                \"updated_at\": \"2024-05-15T10:09:16.228744Z\"\n            }\n        }\n    ]\n}",
+                                "uid": "34274153-dfb0e69d-d1b5-4757-bf30-cfc4dab81e8c"
+                            }
+                        ],
+                        "uid": "34274153-16be30fc-0e10-4615-bc2d-6fe7a75b7d96"
                     },
                     {
                         "name": "resync Indexed Carbon Status",
@@ -487,7 +1025,7 @@
                             "header": [],
                             "body": {
                                 "mode": "raw",
-                                "raw": "{\r\n    \"customerId\":\"adaptiv_kb\"\r\n}",
+                                "raw": "{\r\n    \"customerId\":\"alpha-play\"\r\n}",
                                 "options": {
                                     "raw": {
                                         "language": "json"
@@ -495,11 +1033,15 @@
                                 }
                             },
                             "url": {
-                                "raw": "localhost:3100/carbon/checkReadyIndexedCarbon",
+                                "raw": "http://35.183.170.174:3200/carbon/checkReadyIndexedCarbon",
+                                "protocol": "http",
                                 "host": [
-                                    "localhost"
+                                    "35",
+                                    "183",
+                                    "170",
+                                    "174"
                                 ],
-                                "port": "3100",
+                                "port": "3200",
                                 "path": [
                                     "carbon",
                                     "checkReadyIndexedCarbon"
